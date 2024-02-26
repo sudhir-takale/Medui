@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "Menlo",
+  "editor.fontLigatures": true,
+    "launch": {
+
+        "configurations": [],
+        "compounds": []
+    }
+}

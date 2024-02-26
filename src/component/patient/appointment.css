@@ -1,0 +1,43 @@
+/* src/components/AppointmentForm.css */
+.appointment-card {
+    width: 600px;
+    margin: auto;
+    /* padding-top: 4%; */
+    margin-top: 11%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-left: 23px;
+}
+
+label {
+    display: block;
+    margin-left: 23px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 90%;
+    margin-left: 23px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+button {
+    background-color: #4caf50;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: red;
+    cursor: pointer;
+}
