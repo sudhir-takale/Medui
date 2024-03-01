@@ -1,0 +1,27 @@
+/* Demo.css */
+.doctor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.doctor-table th,
+.doctor-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.grant-button,
+.revoke-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.revoke-button {
+    background-color: #f44336;
+}

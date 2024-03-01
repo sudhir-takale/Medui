@@ -1,0 +1,21 @@
+.roundme {
+
+    border-radius: 11px;
+
+}
+
+.roundmee {
+
+    border-radius: 11px;
+    /* width: px; */
+    width: auto;
+    font-weight: 600;
+
+
+}
+
+.errors {
+    color: red;
+
+
+}

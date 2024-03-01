@@ -12,11 +12,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Dashboard", href: "/patient/", current: false },
+  {
+    name: "Manage Appointment",
+    href: "/patient/manage-appointment",
+    current: false,
+  },
+  { name: "View History", href: "/patient/view-history", current: false },
+  { name: "Tele Health", href: "/patient/tele-health", current: false },
+  { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -38,8 +42,8 @@ export default function Dashboard() {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="hidden md:block">
-                      <div className="ml-10 flex items-baseline space-x-4">
+                    <div className="hidden md:block" >
+                      <div className="ml-10 flex items-baseline space-x-4 ">
                         {navigation.map((item) => (
                           <a
                             key={item.name}
@@ -238,7 +242,7 @@ export default function Dashboard() {
                 textDecoration: "none",
                 fontWeight: "bold",
               }}
-              href="/your-link"
+              href="/patient/manage-appointment"
               className="bg-blue-500 text-white px-4 py-2 mt-4 inline-block"
             >
               Book Appointment
@@ -256,23 +260,23 @@ export default function Dashboard() {
                   <SingleCard
                     image="https://i.ibb.co/r2zns1m/image-01.jpg"
                     // CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/dsfd"
-                    btnHref="/dslkafd"
-                    Button="View Details"
+                    titleHref="/patient/health-record"
+                    btnHref="/patient/health-record"
+                    Button="Manage Health Record"
                   />
                   <SingleCard
                     image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
                     // CardTitle="Creative Card Component designs graphic elements"
-                    titleHref="/#"
-                    btnHref="/#"
-                    Button="View Details"
+                    titleHref="/patient/view-history"
+                    btnHref="//patient/view-history"
+                    Button="View History"
                   />
                   <SingleCard
                     image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
                     // CardTitle="The ultimate UX and UI guide to card design"
-                    titleHref="/#"
-                    btnHref="/#"
-                    Button="View Details"
+                    titleHref="/patient/tele-health"
+                    btnHref="/patient/tele-health"
+                    Button="Tele Health"
                   />
                 </div>
               </div>
@@ -284,7 +288,7 @@ export default function Dashboard() {
           style={{
             backgroundImage:
               'url("https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=")',
-            height: "500px",
+            height: "auto",
           }}
         >
           <Appointment />
@@ -296,11 +300,7 @@ export default function Dashboard() {
 }
 
 // export default Card;
-const SingleCard = ({
-  image,
-  Button,
-  titleHref,
-}) => {
+const SingleCard = ({ image, Button, titleHref }) => {
   return (
     <>
       <a
