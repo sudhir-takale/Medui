@@ -123,8 +123,8 @@ export default function Example() {
               MedRecord - A PHR Manager!
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              We provide service to manage you Personal health Record online and
-              you can access it from anywhere!
+              We provide service to manage your Personal health Record online and
+              you can access it from anytime & anywhere!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a

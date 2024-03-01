@@ -1,7 +1,7 @@
 .App1 {
     display: flex;
     flex: 1;
-    height: 100vh;
+    height: 110vh;
     justify-content: center;
     align-items: center;
 }
@@ -75,4 +75,14 @@ button[disabled] {
     background-color: #cccccc;
     color: #666666;
     cursor: not-allowed;
+}
+
+#sign-up{
+    text-align: center;
+}
+#submit{
+    text-align: center;
+    background-color: blue;
+    
+    margin-left: 90px;
 }

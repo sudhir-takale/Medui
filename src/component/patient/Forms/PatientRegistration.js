@@ -17,6 +17,16 @@ function PatientRegistration() {
     value: "",
     isTouched: false,
   });
+
+  const [confirmPassword, setConfirmPassword] = useState({
+    value: "",
+    isTouched: false,
+  });
+
+
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
   const [role, setRole] = useState("role");
 
   const getIsFormValid = () => {
@@ -24,7 +34,11 @@ function PatientRegistration() {
       firstName &&
       validateEmail(email) &&
       password.value.length >= 8 &&
-      role !== "role"
+      password.value === confirmPassword.value &&
+      role !== "role" &&
+      dob !== "" &&
+      gender !== "gender" &&
+      mobileNumber !== ""
     );
   };
 
@@ -36,7 +50,17 @@ function PatientRegistration() {
       value: "",
       isTouched: false,
     });
+    setConfirmPassword({
+      value: "",
+      isTouched: false,
+    });
+   
+
+    setDob("");
+    
     setRole("role");
+    setGender("");
+    setMobileNumber("");
   };
 
   const handleSubmit = (e) => {
@@ -49,7 +73,7 @@ function PatientRegistration() {
     <div className="App1">
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <h2>Sign Up</h2>
+          <h2 id="sign-up">Sign Up</h2>
           <div className="Field">
             <label>
               First name <sup>*</sup>
@@ -59,7 +83,7 @@ function PatientRegistration() {
               onChange={(e) => {
                 setFirstName(e.target.value);
               }}
-              placeholder="First name"
+              placeholder="Enter First name"
             />
           </div>
           <div className="Field">
@@ -69,7 +93,7 @@ function PatientRegistration() {
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
-              placeholder="Last name"
+              placeholder="Enter Last name"
             />
           </div>
           <div className="Field">
@@ -81,7 +105,7 @@ function PatientRegistration() {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              placeholder="Email address"
+              placeholder="Enter Email address"
             />
           </div>
           <div className="Field">
@@ -97,14 +121,79 @@ function PatientRegistration() {
               onBlur={() => {
                 setPassword({ ...password, isTouched: true });
               }}
-              placeholder="Password"
+              placeholder="Enter Password"
             />
             {password.isTouched && password.value.length < 8 ? (
               <PasswordErrorMessage />
             ) : null}
           </div>
+
+
+          <div className="Field">
+            <label>
+              Confirm Password <sup>*</sup>
+            </label>
+            <input
+              value={confirmPassword.value}
+              type="password"
+              onChange={(e) => {
+                setConfirmPassword({ ...confirmPassword, value: e.target.value });
+              }}
+              onBlur={() => {
+                setConfirmPassword({ ...confirmPassword, isTouched: true });
+              }}
+              placeholder="Confirm Password"
+            />
+            {confirmPassword.isTouched &&
+            confirmPassword.value.length < 8 &&
+            confirmPassword.value !== password.value ? (
+              <PasswordErrorMessage />
+            ) : null}
+          </div>
+
+          {<div className="Field">
+            <label>
+              Mobile Number <sup>*</sup>
+            </label>
+            <input
+              type="tel"
+              value={mobileNumber}
+              onChange={(e) => {
+                setMobileNumber(e.target.value);
+              }}
+              placeholder="Enter Mobile Number"
+            />
+          </div>}
+          <div className="Field">
+            <label>
+              Date of Birth <sup>*</sup>
+            </label>
+            <input
+              type="date"
+              value={dob}
+              onChange={(e) => {
+                setDob(e.target.value);
+              }}
+            />
+          </div>
+          <div className="Field">
+            <label>
+              Gender <sup>*</sup>
+            </label>
+            <select
+              value={gender}
+              onChange={(e) => {
+                setGender(e.target.value);
+              }}
+            >
+              <option value="gender">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
           
-          <button type="submit" disabled={!getIsFormValid()}>
+          <button id="submit" type="submit" disabled={!getIsFormValid()}>
             Create account
           </button>
         </fieldset>
