@@ -1,129 +1,163 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const Demo = () => {
-  const [patientData, setPatientData] = useState(null);
-  const [editableData, setEditableData] = useState(null);
-  const [loading, setLoading] = useState(true);
+import "./Appointment.css";
 
-  useEffect(() => {
-    // Replace 'your-api-endpoint' with the actual backend API endpoint
-    fetch("your-api-endpoint/patient-data")
-      .then((response) => response.json())
-      .then((data) => {
-        setPatientData(data);
-        setEditableData({ ...data }); // Create a copy for editing
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching patient data:", error);
-        setLoading(false);
-      });
-  }, []);
+function Appointment() {
+  const [formData, setFormData] = useState({
+    name: "",
+    date: "",
+    time: "",
+    reason: "",
+    mode: "",
+    doctor: "",
+    notes: "",
+  });
 
-  const handleEdit = () => {
-    // Enable editing by copying the patient data
-    setEditableData({ ...patientData });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Perform client-side validation
+    const validationErrors = {};
+    if (!formData.name.trim()) {
+      validationErrors.name = "Name is required";
+    }
+    if (!formData.date) {
+      validationErrors.date = "Date is required";
+    }
+    // Add more validation as needed
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/patient/appointments/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Appointment booked successfully");
+        // Redirect to the Manage Appointments page after successful booking
+      } else {
+        console.error("Failed to book appointment");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
-  const handleSave = () => {
-    // Send the updated data to the backend (replace with your actual API endpoint)
-    fetch("your-api-endpoint/update-patient-data", {
-      method: "PUT", // or 'POST' depending on your API
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editableData),
-    })
-      .then((response) => response.json())
-      .then((updatedData) => {
-        setPatientData(updatedData);
-        setEditableData(null);
-      })
-      .catch((error) => {
-        console.error("Error updating patient data:", error);
-      });
-  };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
 
+    // Clear validation errors when the user starts typing
+    setErrors({
+      ...errors,
+      [e.target.name]: undefined,
+    });
+  };
   return (
-    <div>
-      <h1>Patient Personal Health Record</h1>
-      {loading ? (
-        <p>Loading patient data...</p>
-      ) : (
-        <div>
-          <h2>{patientData && patientData.name}'s Information</h2>
-          {editableData ? (
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name:</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={editableData.name || ""}
-                        onChange={(e) =>
-                          setEditableData({
-                            ...editableData,
-                            name: e.target.value,
-                          })
-                        }
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>DOB:</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={editableData.dateOfBirth || ""}
-                        onChange={(e) =>
-                          setEditableData({
-                            ...editableData,
-                            dateOfBirth: e.target.value,
-                          })
-                        }
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Gender:</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={editableData.gender || ""}
-                        onChange={(e) =>
-                          setEditableData({
-                            ...editableData,
-                            gender: e.target.value,
-                          })
-                        }
-                      />
-                    </td>
-                  </tr>
-                  {/* Add more fields as needed */}
-                </tbody>
-              </table>
-              <button onClick={handleSave}>Save</button>
+    <div className="flex items-center mx-5 h-full">
+      <div className=" p-8 rounded-md ">
+        <h2 className="text-3xl font-semibold mb-3 ">Book an Appointment</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-2">
+            <label className="block text-white-600">Enter you Name</label>
+
+            <input
+              type="text"
+              onChange={handleChange}
+              name="name"
+              value={formData.name}
+              placeholder="Enter you Name"
+              className="w-full border-b-2 border-gray-400  roundme focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div className="flex mb-2">
+            <div className="mr-2">
+              <label className="block text-gray-600">Select Date</label>
+              <input
+                placeholder="Select Appointment Date"
+                type="date"
+                className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
+              />
             </div>
-          ) : (
-            <div>
-              <p>DOB: {patientData.dateOfBirth}</p>
-              <p>Gender: {patientData.gender}</p>
-              {/* Add more fields as needed */}
-              <button onClick={handleEdit}>Edit</button>
+            <div className="ml-2">
+              <label className="block text-gray-600">Enter Time</label>
+              <input
+                placeholder="select Time"
+                type="time"
+                name="time"
+                className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
+              />
             </div>
-          )}
-        </div>
-      )}
+          </div>
+
+          <div className="flex mb-2">
+            <div className="mr-2">
+              <label className="block text-gray-600">
+                Enter Reason of Appointment
+              </label>
+              <input
+                placeholder="Enter Reason For appointment"
+                type="text"
+                name="reason"
+                className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <div className="ml-2">
+              <label className="block text-white-600">Select Mode</label>
+              <select className="w-full border roundme border-gray-400 focus:outline-none focus:border-blue-500">
+                <option>Select mode</option>
+                <option value="doctor1">Physical Consult</option>
+                <option value="doctor2">Tele Consult</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="ml-2">
+            <label className="block text-white-600">Select The Doctor</label>
+            <select className="w-full border roundme border-gray-400 focus:outline-none focus:border-blue-500">
+              <option>Select doctor name</option>
+              <option value="doctor1">Dr. Sanket</option>
+              <option value="doctor2">Dr. Pruthvi</option>
+              <option value="doctor3">Dr. Ajay</option>
+              <option value="doctor3">Dr. Rahul</option>
+              {/* Add more options as needed */}
+            </select>
+          </div>
+          <div className="mb-2">
+            <label className="block text-gray-600">Enter Notes</label>
+            <input
+              type="text"
+              placeholder="Enter Notes if Any"
+              className="w-full border-b-2 border-gray-400 roundme focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-6 py-2 block mx-auto roundmee text-center hover:bg-primary-700 focus:outline-none focus:shadow-outline-blue"
+          >
+            Book A Appointment
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
+}
 
-export default Demo;
+export default Appointment;

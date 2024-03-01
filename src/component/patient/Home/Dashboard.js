@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import "./dashboard.css";
 import Footer from "./Footer";
-
+import Appointment from "./Appointment";
 
 const user = {
   name: "Tom Cook",
@@ -217,7 +217,6 @@ export default function Dashboard() {
               style={{
                 marginLeft: "23px",
                 fontSize: "16px",
-                // width: "123px",
                 textAlign: "center",
               }}
             >
@@ -288,91 +287,7 @@ export default function Dashboard() {
             height: "500px",
           }}
         >
-          <div className="flex items-center mx-5 h-full">
-            <div className=" p-8 rounded-md ">
-              <h2 className="text-3xl font-semibold mb-3 ">
-                Book an Appointment
-              </h2>
-              <form>
-                <div className="mb-2">
-                  <label className="block text-white-600">Enter you Name</label>
-
-                  <input
-                    type="text"
-                    placeholder="Enter you Name"
-                    className="w-full border-b-2 border-gray-400  roundme focus:outline-none focus:border-blue-500"
-                  />
-                </div>
-
-                <div className="flex mb-2">
-                  <div className="mr-2">
-                    <label className="block text-gray-600">Input 1</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                  <div className="ml-2">
-                    <label className="block text-gray-600">Input 2</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex mb-2">
-                  <div className="mr-2">
-                    <label className="block text-gray-600">Input 3</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                  <div className="ml-2">
-                    <label className="block text-gray-600">Input 4</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme  border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex mb-2">
-                  <div className="mr-2">
-                    <label className="block text-gray-600">Input 5</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                  <div className="ml-2">
-                    <label className="block text-gray-600">Input 6</label>
-                    <input
-                      type="text"
-                      className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-2">
-                  <label className="block text-gray-600">Enter Notes</label>
-                  <input
-                    type="text"
-                    placeholder="Enter A Note if Any"
-                    className="w-full border-b-2 border-gray-400 roundme focus:outline-none focus:border-blue-500"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white px-6 py-2 block mx-auto roundmee text-center hover:bg-primary-700 focus:outline-none focus:shadow-outline-blue"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
+          <Appointment />
         </div>
         <Footer />
       </div>
@@ -384,10 +299,7 @@ export default function Dashboard() {
 const SingleCard = ({
   image,
   Button,
-  CardDescription,
-  CardTitle,
   titleHref,
-  btnHref,
 }) => {
   return (
     <>
