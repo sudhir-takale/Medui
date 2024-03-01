@@ -6,7 +6,7 @@ import "./appointment.css"; // Import the custom CSS file
 
 const doctorsList = ["Dr. Smith", "Dr. Johnson", "Dr. Williams"]; // Your list of doctors
 
-const Appointment = () => {
+const Demo = () => {
   const [date, setDate] = useState(null);
   const [doctor, setDoctor] = useState("");
   const [reason, setReason] = useState("");
@@ -60,4 +60,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default Demo;

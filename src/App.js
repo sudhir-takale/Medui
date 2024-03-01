@@ -1,54 +1,38 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PatientRegistration from "./component/patient/Forms/PatientRegistration";
-// import UpdateProfile from "./component/patient/Forms/UpdateProfile";
-// import Slider from "./component/home/Slider";
-// import Appointment from "./component/patient/Appointment";
-// import Navb from "./component/patient/Navbar/Navb";
-import Footer from "./component/patient/Footer";
-import Home from "./component/home/Home";
-import AboutUs from "./component/home/AboutUs";
-import OurServices from "./component/home/OurServices";
-import OurDoctors from "./component/home/OurDoctors";
-import Blogs from "./component/home/Blogs";
-import Faq from "./component/home/Faq";
-import ContactUS from "./component/home/ContactUs";
-import Brand from "./component/home/Brand";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Demo from "./Demo";
+// import SideBar from "./component/Sidebar";
+// import sidebar_menu from "./constants/sidebar-menu";
 
-import Slider from "./component/home/Slider";
-import Login from "./component/auth/Login";
-import Dashboard from "./component/patient/Home/Dashboard";
+import "./App.css";
+// import Dashboard from "./component/patient/Home/Dashboard";
+// import Appointment from "./component/patient/Appointment";
+// import Orders from "./pages/Orders";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/patient" element={<Dashboard />} />
-          <Route path="/patient" element={<Dashboard />} />
-          <Route
-            path="/patient-registration"
-            element={<PatientRegistration />}
-          />
-        </Routes>
-      </BrowserRouter>
+    // <Dashboard />
+    <Demo />
+    // This is admin router
+    // <Router>
+    //   <div className="dashboard-container">
+    //     <SideBar menu={sidebar_menu} />
 
-      <div>
-        <Slider />
-
-        <AboutUs />
-        <OurServices />
-        <OurDoctors />
-        <Blogs />
-        <Brand />
-        <Faq />
-        <ContactUS />
-        <Footer />
-      </div>
-    </div>
+    //     <div className="dashboard-body">
+    //       <Routes>
+    //         <Route path="*" element={<div></div>} />
+    //         <Route exact path="/" element={<div></div>} />
+    //         <Route exact path="/orders" element={<Orders />} />
+    //         <Route exact path="/locations" element={<div></div>} />
+    //         <Route
+    //           exact
+    //           path="/profile"
+    //           element={<div>how are you todua</div>}
+    //         />
+    //       </Routes>
+    //     </div>
+    //   </div>
+    // </Router>
   );
 }
 
