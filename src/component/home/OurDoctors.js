@@ -14,8 +14,10 @@ const OurDoctors = () => {
                 Our Awesome Team
               </h2>
               <p className="text-base text-body-color dark:text-dark-6">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+                Our team is more than just a group of individuals working
+                together; we are a cohesive unit bound by a shared vision and a
+                commitment to excellence. In our pursuit of success, we
+                prioritize collaboration, innovation, and mutual support.
               </p>
             </div>
           </div>
@@ -24,22 +26,22 @@ const OurDoctors = () => {
         <div className="-mx-4 flex flex-wrap justify-center">
           <TeamCard
             name="Coriss Ambady"
-            profession="Web Developer"
+            profession="Doctor of Medicine (MD)"
             imageSrc="https://i.ibb.co/T1J9LD4/image-03-2.jpg"
           />
           <TeamCard
             name="Coriss Ambady"
-            profession="Web Developer"
+            profession="Doctor of Philosophy (Ph.D)"
             imageSrc="https://i.ibb.co/8P6cvVy/image-01-1.jpg"
           />
           <TeamCard
             name="Coriss Ambady"
-            profession="Web Developer"
+            profession="Master of Science in Medicine (MSc)"
             imageSrc="https://i.ibb.co/30tGtjP/image-04.jpg"
           />
           <TeamCard
             name="Coriss Ambady"
-            profession="Web Developer"
+            profession="Doctor of Osteopathic Medicine (DO)"
             imageSrc="https://i.ibb.co/yVVT0Dp/image-02-2.jpg"
           />
         </div>
