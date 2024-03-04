@@ -2,7 +2,6 @@ import "./registration.css";
 import { useState } from "react";
 import { validateEmail } from "./utils";
 
-
 const PasswordErrorMessage = () => {
   return (
     <p className="FieldError">Password should have at least 8 characters</p>
@@ -13,6 +12,7 @@ function PatientRegistration() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState({
     value: "",
     isTouched: false,
@@ -23,7 +23,6 @@ function PatientRegistration() {
     isTouched: false,
   });
 
-
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -33,6 +32,7 @@ function PatientRegistration() {
     return (
       firstName &&
       validateEmail(email) &&
+      username !== "" &&
       password.value.length >= 8 &&
       password.value === confirmPassword.value &&
       role !== "role" &&
@@ -46,6 +46,7 @@ function PatientRegistration() {
     setFirstName("");
     setLastName("");
     setEmail("");
+    setUsername("");
     setPassword({
       value: "",
       isTouched: false,
@@ -54,10 +55,9 @@ function PatientRegistration() {
       value: "",
       isTouched: false,
     });
-   
 
     setDob("");
-    
+
     setRole("role");
     setGender("");
     setMobileNumber("");
@@ -108,6 +108,20 @@ function PatientRegistration() {
               placeholder="Enter Email address"
             />
           </div>
+
+          <div className="Field">
+            <label>
+              Username <sup>*</sup>
+            </label>
+            <input
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              placeholder="Enter Username"
+            />
+          </div>
+
           <div className="Field">
             <label>
               Password <sup>*</sup>
@@ -128,7 +142,6 @@ function PatientRegistration() {
             ) : null}
           </div>
 
-
           <div className="Field">
             <label>
               Confirm Password <sup>*</sup>
@@ -137,7 +150,10 @@ function PatientRegistration() {
               value={confirmPassword.value}
               type="password"
               onChange={(e) => {
-                setConfirmPassword({ ...confirmPassword, value: e.target.value });
+                setConfirmPassword({
+                  ...confirmPassword,
+                  value: e.target.value,
+                });
               }}
               onBlur={() => {
                 setConfirmPassword({ ...confirmPassword, isTouched: true });
@@ -151,19 +167,21 @@ function PatientRegistration() {
             ) : null}
           </div>
 
-          {<div className="Field">
-            <label>
-              Mobile Number <sup>*</sup>
-            </label>
-            <input
-              type="tel"
-              value={mobileNumber}
-              onChange={(e) => {
-                setMobileNumber(e.target.value);
-              }}
-              placeholder="Enter Mobile Number"
-            />
-          </div>}
+          {
+            <div className="Field">
+              <label>
+                Mobile Number <sup>*</sup>
+              </label>
+              <input
+                type="tel"
+                value={mobileNumber}
+                onChange={(e) => {
+                  setMobileNumber(e.target.value);
+                }}
+                placeholder="Enter Mobile Number"
+              />
+            </div>
+          }
           <div className="Field">
             <label>
               Date of Birth <sup>*</sup>
@@ -192,7 +210,7 @@ function PatientRegistration() {
               <option value="other">Other</option>
             </select>
           </div>
-          
+
           <button id="submit" type="submit" disabled={!getIsFormValid()}>
             Create account
           </button>

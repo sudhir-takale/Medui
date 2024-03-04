@@ -2,7 +2,7 @@ import React from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Demo from "./Demo";
 // import SideBar from "./component/Sidebar";
-// import sidebar_menu from "./constants/sidebar-menu";
+//import sidebar_menu from "./constants/sidebar-menu";
 
 import "./App.css";
 import Dashboard from "./component/patient/Home/Dashboard";
@@ -11,9 +11,11 @@ import Dashboard from "./component/patient/Home/Dashboard";
 
 // import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
 
+
 function App() {
+  
   return (
-    <Dashboard />
+    <Dashboard/>
     // <Demo />
     // This is admin router
     // <Router>
@@ -37,5 +39,6 @@ function App() {
     // </Router>
   );
 }
+
 
 export default App;
