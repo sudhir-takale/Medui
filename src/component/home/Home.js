@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import Slider from "./Slider";
+import AboutUs from "./AboutUs";
+import Blogs from "./Blogs";
+import Contact from "./ContactUs";
+import Doctors from "./OurDoctors";
+import Faq from "./Faq";
+import Services from "./OurServices";
+import Brand from "./Brand";
+import Footer from "../patient/Home/Footer";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "About", href: "/about-us" },
   { name: "Doctors", href: "/our-doctors" },
   { name: "For Patient", href: "/patient-registration" },
-  { name: "For Doctor", href: "#" },
 ];
 
 export default function Example() {
@@ -123,8 +130,8 @@ export default function Example() {
               MedRecord - A PHR Manager!
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              We provide service to manage your Personal health Record online and
-              you can access it from anytime & anywhere!
+              We provide service to manage your Personal health Record online
+              and you can access it from anytime & anywhere!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
@@ -155,6 +162,16 @@ export default function Example() {
           />
         </div>
       </div>
+
+      <Slider />
+      <AboutUs />
+      <Services />
+      <Doctors />
+      <Faq />
+      <Brand />
+      <Blogs />
+      <Contact />
+      <Footer />
     </div>
   );
 }
