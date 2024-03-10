@@ -5,7 +5,9 @@ import PatientRoutes from "./component/patient/PatientRoutes";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 
+
 function App() {
+  
   return (
     <div>
       <Router>
@@ -19,5 +21,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
