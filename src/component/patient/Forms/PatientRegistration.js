@@ -63,12 +63,46 @@ function PatientRegistration() {
     setMobileNumber("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Account created!");
-    clearForm();
-  };
 
+    // Prepare the data to send
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      username,
+      password: password.value,
+      confirmPassword: confirmPassword.value,
+      dob,
+      gender,
+      mobileNumber,
+      role,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/processing-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form data.");
+      }
+
+      alert("Account created!");
+      clearForm();
+
+      // Redirect to the home page
+      window.location.href = "/home";
+    } catch (error) {
+      console.error("Error:", error.message);
+      alert("Failed to submit form data. Please try again later.");
+    }
+  };
   return (
     <div className="App1">
       <form onSubmit={handleSubmit}>

@@ -13,8 +13,8 @@ import Footer from "../patient/Home/Footer";
 import { Link } from "react-router-dom";
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "About", href: "/about-us" },
+  { name: "Services", href: "#services" },
+  { name: "About", href: "#about" },
   { name: "Doctors", href: "/our-doctors" },
   { name: "For Patient", href: "/patient-registration" },
 ];
@@ -165,8 +165,13 @@ export default function Example() {
       </div>
 
       <Slider />
-      <AboutUs />
-      <Services />
+      <div id="about">
+        <AboutUs />
+      </div>
+      <div id="services">
+        <Services />
+      </div>
+
       <Doctors />
       <Faq />
       <Brand />
