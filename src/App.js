@@ -5,6 +5,9 @@ import PatientRoutes from "./component/patient/PatientRoutes";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 import PatientRegistration from "./component/patient/Forms/PatientRegistration";
+// import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
+import MainHome from "./component/patient/PatientAppointment/MainHome";
+// import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
 
 function App() {
   return (
@@ -15,9 +18,15 @@ function App() {
 
           <Route path="/patient" element={<PatientRoutes />} />
           <Route
+            path="/patient/manage-appointment"
+            element={<MainHome />}
+          />
+         
+          <Route
             path="/patient-registration"
             element={<PatientRegistration />}
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AdminRoutes />} />
         </Routes>

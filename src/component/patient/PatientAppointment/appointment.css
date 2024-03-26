@@ -1,0 +1,25 @@
+.appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+.appointment-table th {
+    background-color: #f2f2f2;
+}
+
+.appointment-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.appointment-table tr:hover {
+    background-color: #e2e2e2;
+}
+
+/* Additional styles can be added as needed */
