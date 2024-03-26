@@ -30,17 +30,17 @@ const OurDoctors = () => {
             imageSrc="https://i.ibb.co/T1J9LD4/image-03-2.jpg"
           />
           <TeamCard
-            name="Coriss Ambady"
+            name="Emily Chang"
             profession="Doctor of Philosophy (Ph.D)"
             imageSrc="https://i.ibb.co/8P6cvVy/image-01-1.jpg"
           />
           <TeamCard
-            name="Coriss Ambady"
+            name="Alex Johnson"
             profession="Master of Science in Medicine (MSc)"
             imageSrc="https://i.ibb.co/30tGtjP/image-04.jpg"
           />
           <TeamCard
-            name="Coriss Ambady"
+            name="David Miller"
             profession="Doctor of Osteopathic Medicine (DO)"
             imageSrc="https://i.ibb.co/yVVT0Dp/image-02-2.jpg"
           />

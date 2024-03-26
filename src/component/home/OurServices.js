@@ -14,8 +14,7 @@ const OurServices = () => {
                 What We Offer
               </h2>
               <p className="text-base text-body-color dark:text-dark-6">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+              At MedRecord, we provide cutting-edge authentication solutions tailored specifically for safeguarding personal health records (PHRs) in cloud computing environments. With our comprehensive authentication scheme, you can trust that your sensitive health data remains secure and accessible only to authorized individuals.
               </p>
             </div>
           </div>
@@ -23,8 +22,8 @@ const OurServices = () => {
 
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
-            title="Refreshing Design"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Authentication Service"
+            details="Develop a centralized authentication service responsible for verifying the identity of users attempting to access PHRs. This service should support multi-factor authentication (MFA) to enhance security."
             icon={
               <svg
                 width="36"
@@ -41,8 +40,8 @@ const OurServices = () => {
             }
           />
           <ServiceCard
-            title="Based on Tailwind CSS"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Access Control Service"
+            details="Create an access control service that enforces role-based access control (RBAC) policies to manage user permissions and access rights to PHRs. Define roles such as patients, healthcare providers, and administrators, and assign appropriate access privileges to each role."
             icon={
               <svg
                 width="36"
@@ -61,8 +60,8 @@ const OurServices = () => {
             }
           />
           <ServiceCard
-            title="100+ Components"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Performance Optimization Service"
+            details="This service is responsible for maximizing the speed, responsiveness, and scalability of the healthcare system to ensure optimal performance under varying workloads and usage scenarios."
             icon={
               <svg
                 width="36"
@@ -91,8 +90,8 @@ const OurServices = () => {
             }
           />
           <ServiceCard
-            title="Speed Optimized"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Monitoring and Audit Service"
+            details="Implement monitoring and audit services to track user activities and access logs related to PHR access. Record relevant information such as user identities, timestamps, and accessed resources to maintain an audit trail."
             icon={
               <svg
                 width="36"
@@ -113,8 +112,8 @@ const OurServices = () => {
             }
           />
           <ServiceCard
-            title="Fully Customizable"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Medical Database Updates"
+            details="Regularly update the medical databases containing information such as drug databases, disease classifications, diagnostic criteria, and treatment guidelines."
             icon={
               <svg
                 width="36"
@@ -131,8 +130,8 @@ const OurServices = () => {
             }
           />
           <ServiceCard
-            title="Regular Updates"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Personalization and Customization Service"
+            details="This service is responsible for enabling users to customize their healthcare experience, tailor system settings to their preferences, and adapt the interface to meet their unique requirements."
             icon={
               <svg
                 width="36"

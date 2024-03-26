@@ -595,18 +595,14 @@ const AboutUs = () => {
                 <span className="block mb-4 text-lg font-semibold text-primary">
                   Why Choose Us
                 </span>
-                <h2 className="mb-5 text-3xl font-bold text-dark dark:text-white sm:text-[40px]/[48px]">
-                  Make your customers happy by giving services.
-                </h2>
+                <h3 className="mb-5 text-3xl font-bold text-dark dark:text-white sm:text-[40px]/[48px]">
+                  Make your customers happy by giving our premium services.
+                </h3>
                 <p className="mb-5 text-base text-body-color dark:text-dark-6">
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a more-or-less.
+                For secure authentication of personal health records in the cloud, choose us. With unmatched expertise and dedication, we ensure the safeguarding of PHRs with robust security measures and tailored solutions. 
                 </p>
                 <p className="mb-8 text-base text-body-color dark:text-dark-6">
-                  A domain name is one of the first steps to establishing your
-                  brand. Secure a consistent brand image with a domain name that
-                  matches your business.
+                We use top-notch security methods like strong encryption, multi-factor authentication, and strict access controls to protect your personal health records from hackers and unauthorized access. You can trust us to keep your data safe and stay ahead of new security threats in healthcare.
                 </p>
                 <a
                   href="/"

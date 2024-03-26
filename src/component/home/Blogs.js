@@ -15,8 +15,7 @@ const Blogs = () => {
                   Our Recent News
                 </h2>
                 <p className="text-base text-body-color dark:text-dark-6">
-                  There are many variations of passages of Lorem Ipsum available
-                  but the majority have suffered alteration in some form.
+                "Stay Updated: Our Latest News and Updates"
                 </p>
               </div>
             </div>
@@ -24,21 +23,21 @@ const Blogs = () => {
 
           <div className="-mx-4 flex flex-wrap">
             <BlogCard
-              date="Dec 22, 2023"
-              CardTitle="Meet AutoManage, the best AI management tools"
-              CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              date="Mar 25, 2024"
+              CardTitle="Webinar on Healthcare Data Security"
+              CardDescription="Join us for an informative webinar on healthcare data security, where industry experts will discuss best practices for protecting personal health records in the cloud. Register now to learn how our authentication scheme can safeguard your sensitive health data."
               image="https://i.ibb.co/Cnwd4q6/image-01.jpg"
             />
             <BlogCard
               date="Dec 22, 2023"
-              CardTitle="Meet AutoManage, the best AI management tools"
-              CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              CardTitle="Featured in Healthcare IT Magazine"
+              CardDescription="We're honored to be featured in Healthcare IT Magazine for our innovative approach to healthcare authentication."
               image="https://i.ibb.co/Y23YC07/image-02.jpg"
             />
             <BlogCard
-              date="Dec 22, 2023"
-              CardTitle="Meet AutoManage, the best AI management tools"
-              CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              date="Mar 22, 2024"
+              CardTitle="Release of New Authentication Features"
+              CardDescription="We're pleased to introduce new features to our authentication solution, further enhancing security and user experience. The latest update includes customizable authentication options, improved encryption algorithms, and enhanced monitoring capabilities."
               image="https://i.ibb.co/7jdcnwn/image-03.jpg"
             />
           </div>
