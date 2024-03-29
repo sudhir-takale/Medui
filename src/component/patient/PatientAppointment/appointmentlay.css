@@ -1,0 +1,22 @@
+/* appointmentlay.css */
+.appointment {
+    display: flex;
+    width: 100%;
+    /* margin-top: 4%; */
+    margin: 2%;
+
+}
+
+.firstbox {
+    flex: 1;
+    /* margin-right: -45px; */
+}
+
+.secondbox {
+    flex: 1;
+    margin-left: -57%;
+    margin-right: 4%;
+    text-align: center;
+
+
+}

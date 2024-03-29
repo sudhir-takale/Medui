@@ -1,6 +1,8 @@
 import "./registration.css";
 import { useState } from "react";
 import { validateEmail } from "./utils";
+import axios from "axios";
+import Baseurl from "../../../api/Baseurl";
 
 const PasswordErrorMessage = () => {
   return (
@@ -9,6 +11,7 @@ const PasswordErrorMessage = () => {
 };
 
 function PatientRegistration() {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +29,6 @@ function PatientRegistration() {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [role, setRole] = useState("role");
 
   const getIsFormValid = () => {
     return (
@@ -35,38 +37,15 @@ function PatientRegistration() {
       username !== "" &&
       password.value.length >= 8 &&
       password.value === confirmPassword.value &&
-      role !== "role" &&
       dob !== "" &&
       gender !== "gender" &&
       mobileNumber !== ""
     );
   };
 
-  const clearForm = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setUsername("");
-    setPassword({
-      value: "",
-      isTouched: false,
-    });
-    setConfirmPassword({
-      value: "",
-      isTouched: false,
-    });
-
-    setDob("");
-
-    setRole("role");
-    setGender("");
-    setMobileNumber("");
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the data to send
     const formData = {
       firstName,
       lastName,
@@ -77,30 +56,17 @@ function PatientRegistration() {
       dob,
       gender,
       mobileNumber,
-      role,
     };
 
     try {
-      const response = await fetch("http://localhost:3000/processing-data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form data.");
-      }
-
-      alert("Account created!");
-      clearForm();
-
-      // Redirect to the home page
-      window.location.href = "/home";
+      const res = await axios.post(
+        `${Baseurl()}/patient-registration`,
+        formData
+      );
+      console.log(res);
+      console.log(res.data);
     } catch (error) {
-      console.error("Error:", error.message);
-      alert("Failed to submit form data. Please try again later.");
+      console.error("Error occurred while submitting the form:", error);
     }
   };
   return (

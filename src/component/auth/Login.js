@@ -9,9 +9,8 @@ export default function Example() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Add any additional headers if needed
         },
-        credentials: "include", // Add this line if credentials are required
+        credentials: "include", 
         body: JSON.stringify({ username, password }),
       });
 

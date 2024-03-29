@@ -1,11 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./component/home/Home";
-import PatientRoutes from "./component/patient/PatientRoutes";
+import Dashboard from "./component/patient/Home/Dashboard";
+import Appointment from "./component/patient/PatientAppointment/MainHome";
+import Registration from "./component/patient/Forms/PatientRegistration";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 import PatientRegistration from "./component/patient/Forms/PatientRegistration";
-import Dashboard from "./component/patient/Home/Dashboard";
+// import Dashboard from "./component/patient/Home/Dashboard";
 import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
 import AppointmentStats from "./component/doctor/AppointmentStats/AppointmentStats";
 import AppointmentMgmt from "./component/doctor/AppointmentManagement/AppointmentMgmt";
@@ -46,10 +48,6 @@ function App() {
           <Route path="/PatientList" element={<PatientList />} />
           <Route path="UpdatePHR" element={<UpdatePHR />}/>
 
-          <Route path="/patient" element={<PatientRoutes />} />
-          <Route path="/patient-registration" element={<PatientRegistration />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<AdminRoutes />} />
         </Routes>
       </Router>
     </div>

@@ -15,9 +15,7 @@ const ContactUs = () => {
                   GET IN TOUCH WITH US
                 </h2>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                  enim adiqua minim veniam quis nostrud exercitation ullamco
+                We value your interest in our healthcare authentication solutions. Whether you have inquiries about our services, require technical support, or wish to discuss a potential partnership, we're here to assist you. Feel free to reach out to us via the contact information provided below.
                 </p>
                 <div className="mb-8 flex w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -39,7 +37,7 @@ const ContactUs = () => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                    123 Health Plaza New Delhi, Delhi 110001 India
                     </p>
                   </div>
                 </div>
@@ -79,7 +77,7 @@ const ContactUs = () => {
                       Phone Number
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      (+62)81 414 257 9980
+                      (+91) 84998 89988
                     </p>
                   </div>
                 </div>
@@ -104,7 +102,7 @@ const ContactUs = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      info@yourdomain.com
+                      info@medrecord.com
                     </p>
                   </div>
                 </div>
