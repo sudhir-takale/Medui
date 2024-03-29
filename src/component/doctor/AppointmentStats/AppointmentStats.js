@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import "./dashboard.css";
-import Footer from "./Footer";
-import Appointment from "./Appointment";
+import "../dashboard/dashboard.css";
+import "./appointmentstats.css";
+import Footer from "../../patient/Home/Footer";
 
 const user = {
   name: "Tom Cook",
@@ -12,14 +12,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "/patient/", current: false },
+  { name: "Doctor_Dashboard", href: "/Doctor_Dashboard", current: false },
   {
-    name: "Manage Appointment",
-    href: "/patient/manage-appointment",
+    name: "Manage Appointment", 
+    href: "/AppointmentMgmt",
     current: false,
   },
-  { name: "View History", href: "/patient/view-history", current: false },
-  { name: "Tele Health", href: "/patient/tele-health", current: false },
+  { name: "Patient List", href: "/PatientList", current: false },
+  { name: "Patient History", href: "/PatientHistory", current: false },
+  { name: "Update PHR", href: "/UpdatePHR", current: false },
   { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
@@ -28,11 +29,12 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function dashboard() {
+export default function AppointmentStats() {
   return (
     <>
       <div className="min-h-full">
@@ -199,91 +201,40 @@ export default function dashboard() {
             </>
           )}
         </Disclosure>
-        <header
-          className="bg-white shadow relative"
-          style={{
-            backgroundImage:
-              'url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg")',
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: "420px",
-          }}
-        >
-          <div className="absolute inset-0 bg-black opacity-50"></div>
-          <div
-            className="absolute inset-0 mt-5 items-center justify-center text-white "
-            style={{ textAlign: "center" }}
-          >
-            <h1 className="text-4xl font-bold">Smile Brighter </h1>
-            <h1 className="text-4xl font-bold">Live Better </h1>
-            <p
-              className="ml-2"
-              style={{
-                marginLeft: "23px",
-                fontSize: "16px",
-                textAlign: "center",
-              }}
-            >
-              At dentflex, we believe in the transformative power of a healthy
-              smile. Nestled in the heart of [Your City], our clinic is
-              dedicated to providing exceptional dental care in a warm and
-              welcoming environment.
-              <br /> We believe in individualized care plans tailored to your
-              unique oral health requirements.
-              <br /> From routine check-ups to complex procedures, our team
-              ensures that each patient receives the attention they deserve.
-            </p>
-            <br />
 
-            <a
-              style={{
-                fontSize: "16px",
-                textAlign: "center",
-                textDecoration: "none",
-                fontWeight: "bold",
-              }}
-              href="/patient/manage-appointment"
-              className="bg-blue-500 text-white px-4 py-2 mt-4 inline-block"
-            >
-              Book Appointment
-            </a>
+        <div id="topnavbar">
+         <div style={{ textAlign: 'center', margin: '20px 0' }}>
+              <h3 style={{ fontSize: '2rem', color: '#333' }}>Appointment Stats</h3>
           </div>
-        </header>
-        <main
-          className="cards"
-          style={{ position: "relative", zIndex: 1, marginTop: "-66px" }}
-        >
-          <div className="mx-auto max-w-7xl py-6 sm:px-2 lg:px-3 cards">
-            <section className="bg-gray-2 pb-10 pt-0 dark:bg-dark lg:pb-20 lg:pt-[120px]">
-              <div className="container">
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  <SingleCard
-                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                    // CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/patient/health-record"
-                    btnHref="/patient/health-record"
-                    Button="Manage Health Record"
-                  />
-                  <SingleCard
-                    image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
-                    // CardTitle="Creative Card Component designs graphic elements"
-                    titleHref="/patient/view-history"
-                    btnHref="//patient/view-history"
-                    Button="View History"
-                  />
-                  <SingleCard
-                    image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
-                    // CardTitle="The ultimate UX and UI guide to card design"
-                    titleHref="/patient/tele-health"
-                    btnHref="/patient/tele-health"
-                    Button="Tele Health"
-                  />
-                </div>
-              </div>
-            </section>
-          </div>
-        </main>
-        <div
+         
+            <div class="table-responsive px-2">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col">Appointment<span class="ps-1">Requests</span></th>
+                            <th scope="col">Approved<span class="ps-1">Appointments</span></th>
+                            <th scope="col">Canceled<span class="ps-1">Appointments</span></th>
+                            <th scope="col">Completed<span class="ps-1">Appointments</span></th>
+                            <th scope="col">Pending<span class="ps-1">Appointments</span></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="bg-blight">2</span></td>
+                            <td><span class="bg-blight">10</span></td>
+                            <td><span class="bg-blight">5</span></td>
+                            <td><span class="bg-blight">5</span></td>
+                            <td><span class="bg-blight">1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        
+        {/* <div
           className="bg-cover bg-center"
           style={{
             backgroundImage:
@@ -291,8 +242,7 @@ export default function dashboard() {
             height: "auto",
           }}
         >
-          <Appointment />
-        </div>
+        </div> */}
         
         <Footer />
       </div>

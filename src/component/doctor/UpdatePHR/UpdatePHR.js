@@ -1,9 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import "./dashboard.css";
-import Footer from "./Footer";
-import Appointment from "./Appointment";
+import "../dashboard/dashboard.css";
+import "./updatephr.css";
+import Footer from "../../patient/Home/Footer";
 
 const user = {
   name: "Tom Cook",
@@ -12,14 +12,11 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "/patient/", current: false },
-  {
-    name: "Manage Appointment",
-    href: "/patient/manage-appointment",
-    current: false,
-  },
-  { name: "View History", href: "/patient/view-history", current: false },
-  { name: "Tele Health", href: "/patient/tele-health", current: false },
+  { name: "Doctor_Dashboard", href: "/Doctor_Dashboard", current: false },
+  { name: "Manage Appointment", href: "/AppointmentMgmt", current: false },
+  { name: "Patient List", href: "/PatientList", current: false },
+  { name: "Patient History", href: "/PatientHistory", current: false },
+  { name: "Update PHR", href: "/UpdatePHR", current: true }, // Set current to true for active link
   { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
@@ -32,7 +29,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function dashboard() {
+export default function UpdatePHR() {
+  const [medicalUpdate, setMedicalUpdate] = useState("");
+  const [personalInfo, setPersonalInfo] = useState("");
+  const [updatedBy, setUpdatedBy] = useState("");
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Get current timestamp
+    const currentDate = new Date();
+    const timestamp = currentDate.toLocaleString(); // Format the timestamp as needed
+    // Prepare the data object with form fields and timestamp
+    const data = {
+      medicalUpdate: medicalUpdate,
+      personalInfo: personalInfo,
+      updatedBy: updatedBy,
+      timestamp: timestamp,
+    };
+    // You can perform further actions here, such as sending data to the server
+    console.log("Form Data:", data);
+    // Reset form fields after submission
+    setMedicalUpdate("");
+    setPersonalInfo("");
+    setUpdatedBy("");
+  };
+
   return (
     <>
       <div className="min-h-full">
@@ -42,7 +64,7 @@ export default function dashboard() {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="hidden md:block" >
+                    <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4 ">
                         {navigation.map((item) => (
                           <a
@@ -137,6 +159,7 @@ export default function dashboard() {
                 </div>
               </div>
 
+
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item) => (
@@ -199,99 +222,67 @@ export default function dashboard() {
             </>
           )}
         </Disclosure>
-        <header
-          className="bg-white shadow relative"
-          style={{
-            backgroundImage:
-              'url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg")',
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: "420px",
-          }}
-        >
-          <div className="absolute inset-0 bg-black opacity-50"></div>
-          <div
-            className="absolute inset-0 mt-5 items-center justify-center text-white "
-            style={{ textAlign: "center" }}
-          >
-            <h1 className="text-4xl font-bold">Smile Brighter </h1>
-            <h1 className="text-4xl font-bold">Live Better </h1>
-            <p
-              className="ml-2"
-              style={{
-                marginLeft: "23px",
-                fontSize: "16px",
-                textAlign: "center",
-              }}
-            >
-              At dentflex, we believe in the transformative power of a healthy
-              smile. Nestled in the heart of [Your City], our clinic is
-              dedicated to providing exceptional dental care in a warm and
-              welcoming environment.
-              <br /> We believe in individualized care plans tailored to your
-              unique oral health requirements.
-              <br /> From routine check-ups to complex procedures, our team
-              ensures that each patient receives the attention they deserve.
-            </p>
-            <br />
 
-            <a
-              style={{
-                fontSize: "16px",
-                textAlign: "center",
-                textDecoration: "none",
-                fontWeight: "bold",
-              }}
-              href="/patient/manage-appointment"
-              className="bg-blue-500 text-white px-4 py-2 mt-4 inline-block"
+
+        <div className="container">
+          <header>
+            <h1>Update Patient Health Record</h1>
+          </header>
+          <form onSubmit={handleSubmit}>
+            {/* Medical Update */}
+            <div className="mb-4">
+              <label htmlFor="medicalUpdate" className="block mb-1">
+                Medical Update:
+              </label>
+              <textarea
+                id="medicalUpdate"
+                className="w-full h-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                value={medicalUpdate}
+                onChange={(e) => setMedicalUpdate(e.target.value)}
+                placeholder="Enter medical update here..."
+                required
+              ></textarea>
+            </div>
+
+            {/* Personal Information */}
+            <div className="mb-4">
+              <label htmlFor="personalInfo" className="block mb-1">
+                Personal Information:
+              </label>
+              <textarea
+                id="personalInfo"
+                className="w-full h-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                value={personalInfo}
+                onChange={(e) => setPersonalInfo(e.target.value)}
+                placeholder="Enter personal information here..."
+                required
+              ></textarea>
+            </div>
+
+            {/* Updated By */}
+            <div className="mb-4">
+              <label htmlFor="updatedBy" className="block mb-1">
+                Updated By:
+              </label>
+              <input
+                type="text"
+                id="updatedBy"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                value={updatedBy}
+                onChange={(e) => setUpdatedBy(e.target.value)}
+                placeholder="Enter name of the person who updated"
+                required
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             >
-              Book Appointment
-            </a>
-          </div>
-        </header>
-        <main
-          className="cards"
-          style={{ position: "relative", zIndex: 1, marginTop: "-66px" }}
-        >
-          <div className="mx-auto max-w-7xl py-6 sm:px-2 lg:px-3 cards">
-            <section className="bg-gray-2 pb-10 pt-0 dark:bg-dark lg:pb-20 lg:pt-[120px]">
-              <div className="container">
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  <SingleCard
-                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                    // CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/patient/health-record"
-                    btnHref="/patient/health-record"
-                    Button="Manage Health Record"
-                  />
-                  <SingleCard
-                    image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
-                    // CardTitle="Creative Card Component designs graphic elements"
-                    titleHref="/patient/view-history"
-                    btnHref="//patient/view-history"
-                    Button="View History"
-                  />
-                  <SingleCard
-                    image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
-                    // CardTitle="The ultimate UX and UI guide to card design"
-                    titleHref="/patient/tele-health"
-                    btnHref="/patient/tele-health"
-                    Button="Tele Health"
-                  />
-                </div>
-              </div>
-            </section>
-          </div>
-        </main>
-        <div
-          className="bg-cover bg-center"
-          style={{
-            backgroundImage:
-              'url("https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=")',
-            height: "auto",
-          }}
-        >
-          <Appointment />
+              Submit
+            </button>
+          </form>
         </div>
         
         <Footer />
@@ -299,24 +290,3 @@ export default function dashboard() {
     </>
   );
 }
-
-// export default Card;
-const SingleCard = ({ image, Button, titleHref }) => {
-  return (
-    <>
-      <a
-        href={titleHref ? titleHref : "#"}
-        className="block mb-10 overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3"
-      >
-        <img src={image} alt="" className="w-full" />
-        <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-          {Button && (
-            <span className="inline-block roundme border border-gray-3 px-7 py-2 text-base font-medium text-body-color transition hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-dark-6 text-decoration:none    ">
-              {Button}
-            </span>
-          )}
-        </div>
-      </a>
-    </>
-  );
-};

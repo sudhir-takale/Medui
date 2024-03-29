@@ -1,9 +1,10 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
+
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import "./dashboard.css";
-import Footer from "./Footer";
-import Appointment from "./Appointment";
+import Footer from "../../patient/Home/Footer";
 
 const user = {
   name: "Tom Cook",
@@ -12,14 +13,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "/patient/", current: false },
+  { name: "Doctor_Dashboard", href: "/Doctor_Dashboard", current: false },
   {
-    name: "Manage Appointment",
-    href: "/patient/manage-appointment",
+    name: "Manage Appointment", 
+    href: "/AppointmentMgmt",
     current: false,
   },
-  { name: "View History", href: "/patient/view-history", current: false },
-  { name: "Tele Health", href: "/patient/tele-health", current: false },
+  { name: "Patient List", href: "/PatientList", current: false },
+  { name: "Patient History", href: "/PatientHistory", current: false },
+  { name: "Update PHR", href: "/UpdatePHR", current: false },
   { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
@@ -32,7 +34,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function dashboard() {
+export default function Doctor_Dashboard() {
   return (
     <>
       <div className="min-h-full">
@@ -242,10 +244,11 @@ export default function dashboard() {
                 textDecoration: "none",
                 fontWeight: "bold",
               }}
-              href="/patient/manage-appointment"
+              
               className="bg-blue-500 text-white px-4 py-2 mt-4 inline-block"
             >
-              Book Appointment
+              <Link to="/AppointmentStats">View Appointment Stat</Link>
+              {/* View Appointment Stat */}
             </a>
           </div>
         </header>
@@ -257,27 +260,31 @@ export default function dashboard() {
             <section className="bg-gray-2 pb-10 pt-0 dark:bg-dark lg:pb-20 lg:pt-[120px]">
               <div className="container">
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  <div>
                   <SingleCard
                     image="https://i.ibb.co/r2zns1m/image-01.jpg"
                     // CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/patient/health-record"
-                    btnHref="/patient/health-record"
-                    Button="Manage Health Record"
+                    titleHref="/AppointmentMgmt"
+                    // btnHref="/AppointmentMgmt"
+                    Button="Manage Appointments"
                   />
+                  </div>
+
                   <SingleCard
                     image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
                     // CardTitle="Creative Card Component designs graphic elements"
-                    titleHref="/patient/view-history"
-                    btnHref="//patient/view-history"
-                    Button="View History"
+                    titleHref="/PatientHistory"
+                    // btnHref="/PatientHistory"
+                    Button="View Patient History"
                   />
                   <SingleCard
                     image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
                     // CardTitle="The ultimate UX and UI guide to card design"
-                    titleHref="/patient/tele-health"
+                    titleHref="/UpdatePHR"
                     btnHref="/patient/tele-health"
-                    Button="Tele Health"
+                    Button="Update PHR"
                   />
+                  
                 </div>
               </div>
             </section>
@@ -291,7 +298,7 @@ export default function dashboard() {
             height: "auto",
           }}
         >
-          <Appointment />
+          {/* <Appointment /> */}
         </div>
         
         <Footer />

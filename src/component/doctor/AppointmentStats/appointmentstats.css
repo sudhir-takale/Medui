@@ -1,0 +1,48 @@
+#topnavbar {
+    padding: 20px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px; /* Adjust padding as needed */
+    text-align: center; /* Center-align text */
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    background-color: #f8f9fa; /* Light gray */
+    border-bottom: 2px solid #dee2e6;
+    text-align: center;
+  }
+  
+  .table tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa; /* Alternating row color */
+  }
+  
+  .bg-bdark {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .ps-1 {
+    padding-left: 0.25rem;
+  }
+  
+  /* Optional: Center the text in the headers */
+  h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+  }
+  
