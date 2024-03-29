@@ -7,6 +7,9 @@ import Registration from "./component/patient/Forms/PatientRegistration";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
+import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
+// import HealthRecord from "./component/patient/HealthRecord/ShowRecord";
+// import Hh from "./component/patient/HealthRecord/ShowRecord";
 
 function App() {
   return (
@@ -23,8 +26,29 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Patient Rotes */}
+
         <Route path="/patient" element={<Dashboard />} />
-        <Route path="/patient/manage-appointment" element={<Appointment />} />
+        <Route
+          path="/patient/manage-appointment"
+          element={<AppointmentLayout />}
+        >
+          <Route
+            path="/patient/manage-appointment/appointments"
+            element={<div>Hii iam all appointment</div>}
+          />
+          <Route
+            path="/patient/manage-appointment/confirmed"
+            element={<div>Hii iam confirm</div>}
+          />
+          <Route
+            path="/patient/manage-appointment/pending"
+            element={<div>Hii iam pending</div>}
+          />
+          <Route
+            path="/patient/manage-appointment/cancelled"
+            element={<div>Hii iam cancelled</div>}
+          />
+        </Route>
         <Route path="/patient/telehealth" element={<Appointment />} />
         <Route path="/patient/health-record" element={<ShowRecord />} />
         <Route path="/patient/view-history" element={<Appointment />} />

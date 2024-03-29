@@ -1,71 +1,69 @@
-import React from "react";
-import { Col, Row, ListGroup, Container } from "react-bootstrap";
-import { Link, Routes, Route } from "react-router-dom";
-import ViewAllAppointment from "./ViewAllAppointment";
-import Confirmed from "./Confirmed";
-import Pending from "./Pending";
+import React, { useState } from "react";
+import { Col, Row, ListGroup, Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import AppointmentForm from "../Appointment";
+
 function MainHome() {
+  const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNewAppointmentClick = () => {
+    setShowForm(true);
+  };
+
+  const handleCancelForm = () => {
+    setShowForm(false);
+  };
+
+  const handleFormSubmit = (formData) => {
+    console.log(formData);
+    setShowForm(false);
+    navigate.goBack();
+  };
+
   return (
     <>
       <div>
-        <h3>
-          Welcome to Patient Appointment Manager
-        </h3>
-        <Container>
-          <Row>
-            <Col md={3}>
-              <ListGroup>
-                <Link
-                  to="/patient/manage-appointment/appointments"
-                  className="list-group-item"
-                >
-                  All Appointments
-                </Link>
-                <Link
-                  to="/patient/manage-appointment/confirmed"
-                  className="list-group-item"
-                >
-                  Confirmed Appointments
-                </Link>
-                <Link
-                  to="/patient/manage-appointment/pending"
-                  className="list-group-item"
-                >
-                  Pending Appointments
-                </Link>
-                <Link
-                  to="/patient/manage-appointment/cancelled"
-                  className="list-group-item"
-                >
-                  Cancelled Appointments
-                </Link>
-              </ListGroup>
-            </Col>
-
-            <Col md={8}>
-              <ViewAllAppointment />
-
-              <Routes>
-                <Route
-                  path="/patient/manage-appointment/appointments"
-                  element={<ViewAllAppointment />}
-                  exact
-                />
-                <Route
-                  path="/patient/manage-appointment/confirmed"
-                  element={<Confirmed />}
-                  exact
-                />
-                <Route
-                  path="/patient/manage-appointment/pending"
-                  element={<Pending />}
-                  exact
-                />
-              </Routes>
-            </Col>
-          </Row>
-        </Container>
+        <Row>
+          <Col md={3}>
+            <Button className="mb-3 ml-5" onClick={handleNewAppointmentClick}>
+              Book A new Appointment
+            </Button>
+            <ListGroup>
+              <Link
+                to="/patient/manage-appointment/appointments"
+                className="list-group-item"
+              >
+                All Appointments
+              </Link>
+              <Link
+                to="/patient/manage-appointment/confirmed"
+                className="list-group-item"
+              >
+                Confirmed Appointments
+              </Link>
+              <Link
+                to="/patient/manage-appointment/pending"
+                className="list-group-item"
+              >
+                Pending Appointments
+              </Link>
+              <Link
+                to="/patient/manage-appointment/cancelled"
+                className="list-group-item"
+              >
+                Cancelled Appointments
+              </Link>
+            </ListGroup>
+          </Col>
+        </Row>
       </div>
+      {showForm && (
+        <AppointmentForm
+          onCancel={handleCancelForm}
+          onSubmit={handleFormSubmit}
+        />
+      )}
     </>
   );
 }

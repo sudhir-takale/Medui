@@ -1,7 +1,7 @@
 /* CSS file */
 .patient-info-table,
 .medical-records-table {
-    width: 100%;
+    /* width: 100%; */
     border-collapse: collapse;
 }
 
@@ -25,4 +25,38 @@
 .medical-records-table th {
     background-color: #f2f2f2;
     text-align: left;
+    background-color: blueviolet;
+    color: white;
+}
+
+
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.medical-records-table-container {
+    /* flex: 1; */
+    margin-left: 20px;
+}
+
+.medical-records-table {
+    width: 100%;
+}
+
+.tablef {
+    width: 40%;
+
+}
+
+.tables {
+
+    width: 100%;
+    margin-right: 20px;
+
+}
+
+.body {
+    background-color: rgb(52, 181, 190);
 }

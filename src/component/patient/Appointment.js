@@ -1,4 +1,3 @@
-// src/components/AppointmentForm.js
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,7 +5,7 @@ import "./appointment.css"; // Import the custom CSS file
 
 const doctorsList = ["Dr. Smith", "Dr. Johnson", "Dr. Williams"]; // Your list of doctors
 
-const Demo = () => {
+const AppointmentForm = ({ onCancel, onSubmit }) => {
   const [date, setDate] = useState(null);
   const [doctor, setDoctor] = useState("");
   const [reason, setReason] = useState("");
@@ -14,8 +13,19 @@ const Demo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to server or perform other actions)
-    console.log("Appointment Details:", { date, doctor, reason, notes });
+    // Handle form submission
+    onSubmit({ date, doctor, reason, notes });
+  };
+
+  const handleCancel = () => {
+    // Reset form fields
+    setDate(null);
+    setDoctor("");
+    setReason("");
+    setNotes("");
+
+    // Hide the form
+    onCancel();
   };
 
   return (
@@ -53,11 +63,14 @@ const Demo = () => {
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} />
         </div>
         <button className="Submit-btn" type="submit">
-          Submit Appointmet
+          Submit Appointment
+        </button>
+        <button className="Cancel-btn" type="button" onClick={handleCancel}>
+          Cancel
         </button>
       </form>
     </div>
   );
 };
 
-export default Demo;
+export default AppointmentForm;

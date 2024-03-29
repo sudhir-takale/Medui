@@ -1,13 +1,13 @@
 .appointment-table {
     width: 100%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
 }
 
 .appointment-table th,
 .appointment-table td {
     padding: 8px;
     border: 1px solid #dddddd;
-    text-align: left;
+    /* text-align: left; */
 }
 
 .appointment-table th {
@@ -21,5 +21,3 @@
 .appointment-table tr:hover {
     background-color: #e2e2e2;
 }
-
-/* Additional styles can be added as needed */
