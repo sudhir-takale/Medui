@@ -1,37 +1,40 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./component/home/Home";
-import PatientRoutes from "./component/patient/PatientRoutes";
+import Dashboard from "./component/patient/Home/Dashboard";
+import Appointment from "./component/patient/PatientAppointment/MainHome";
+import Registration from "./component/patient/Forms/PatientRegistration";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
-import PatientRegistration from "./component/patient/Forms/PatientRegistration";
-// import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
-import MainHome from "./component/patient/PatientAppointment/MainHome";
-// import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
+import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
+    <Router>
+      <Routes>
+        {/* admin */}
 
-          <Route path="/patient" element={<PatientRoutes />} />
-          <Route
-            path="/patient/manage-appointment"
-            element={<MainHome />}
-          />
-         
-          <Route
-            path="/patient-registration"
-            element={<PatientRegistration />}
-          />
+        <Route path="/admin" element={<AdminRoutes />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<AdminRoutes />} />
-        </Routes>
-      </Router>
-    </div>
+        <Route path="/" element={<Home />} />
+        {/* Login and Registration */}
+
+        <Route path="/patient-registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Patient Rotes */}
+        <Route path="/patient" element={<Dashboard />} />
+        <Route path="/patient/manage-appointment" element={<Appointment />} />
+        <Route path="/patient/telehealth" element={<Appointment />} />
+        <Route path="/patient/health-record" element={<ShowRecord />} />
+        <Route path="/patient/view-history" element={<Appointment />} />
+        <Route path="/patient/profile" element={<Appointment />} />
+        <Route path="/patient/setting" element={<Appointment />} />
+        <Route path="/patient/notification" element={<Appointment />} />
+
+        {/* Doctor Routes */}
+      </Routes>
+    </Router>
   );
 }
 
