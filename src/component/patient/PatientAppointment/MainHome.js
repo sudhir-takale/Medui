@@ -37,7 +37,7 @@ function MainHome() {
                 All Appointments
               </Link>
               <Link
-                to="/patient/manage-appointments/confirmed"
+                to="/patient/manage-appointment/confirmed"
                 className="list-group-item"
               >
                 Confirmed Appointments
