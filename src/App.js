@@ -2,8 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./component/home/Home";
 import Dashboard from "./component/patient/Home/Dashboard";
+import ShowRecord from "./component/patient/HealthRecord/ShowRecord"
+
 import Appointment from "./component/patient/PatientAppointment/MainHome";
-import Registration from "./component/patient/Forms/PatientRegistration";
+import Confirmed from "./component/patient/PatientAppointment/Confirmed"
+
+import Pending from "./component/patient/PatientAppointment/Pending"
+
+import PatientRegister from "./component/patient/Forms/PatientRegistration";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 import PatientRegistration from "./component/patient/Forms/PatientRegistration";
@@ -23,31 +29,18 @@ function App() {
     <div>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-
-          {/* <Route path="/" element={<Dashboard />}  /> */}
-          <Route path="/" element={<Doctor_Dashboard />} />
-
-          {/* <Route path="/" element={<AccessPhr/>}/> */}
-          {/* <Route path="/" element={<ShowRecord />} /> */}
-          
-
-          {/* <Route path="/" element={<AppointmentMgmt />} /> */}
-          {/* <Route path="/" element={<AppointmentStats/>} /> */}
 
           
-          {/* <Route path="/" element={<PatientHistory/>} /> */}
-          {/* <Route path="/" element={<PatientList/>} /> */}
-          {/* <Route path="/" element={<DoctorRegistration/>} /> */}
+          {/* Doctor Routes  */}
+          <Route path="/doctor/dashboard" element={<Doctor_Dashboard />} />
+          <Route path="/doctor-registration" element={<DoctorRegistration />} />
+          <Route path="/doctor/appointment-stats" element={<AppointmentStats/>} />
+          <Route path="/doctor/appointment-mgmt" element={<AppointmentMgmt/>} />
+          <Route path="/doctor/patient-history" element={<PatientHistory/>} />
+          <Route path="/doctor/patient-list" element={<PatientList />} />
+          <Route path="/doctor/update-phr" element={<UpdatePHR />}/>
 
-          <Route path="/Doctor_Dashboard" element={<Doctor_Dashboard />} />
-          <Route path="/DoctorRegistration" element={<DoctorRegistration />} />
-          <Route path="/AppointmentStats" element={<AppointmentStats/>} />
-          <Route path="/AppointmentMgmt" element={<AppointmentMgmt/>} />
-          <Route path="/PatientHistory" element={<PatientHistory/>} />
-          <Route path="/PatientList" element={<PatientList />} />
-          <Route path="UpdatePHR" element={<UpdatePHR />}/>
-
+        
         </Routes>
       </Router>
     </div>
