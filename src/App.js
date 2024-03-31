@@ -23,23 +23,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-
-          {/* <Route path="/" element={<Dashboard />}  /> */}
           <Route path="/" element={<Doctor_Dashboard />} />
-
-          {/* <Route path="/" element={<AccessPhr/>}/> */}
-          {/* <Route path="/" element={<ShowRecord />} /> */}
-          
-
-          {/* <Route path="/" element={<AppointmentMgmt />} /> */}
-          {/* <Route path="/" element={<AppointmentStats/>} /> */}
-
-          
-          {/* <Route path="/" element={<PatientHistory/>} /> */}
-          {/* <Route path="/" element={<PatientList/>} /> */}
-          {/* <Route path="/" element={<DoctorRegistration/>} /> */}
-
           <Route path="/Doctor_Dashboard" element={<Doctor_Dashboard />} />
           <Route path="/DoctorRegistration" element={<DoctorRegistration />} />
           <Route path="/AppointmentStats" element={<AppointmentStats/>} />
