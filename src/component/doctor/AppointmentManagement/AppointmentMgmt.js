@@ -14,16 +14,12 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/Doctor_Dashboard", current: false },
-  {
-    name: "Manage Appointment", 
-    href: "/AppointmentMgmt",
-    current: false,
-  },
-  { name: "Patient List", href: "/PatientList", current: false },
-  { name: "Patient History", href: "/PatientHistory", current: false },
-  { name: "Update PHR", href: "/UpdatePHR", current: false },
-  { name: "Reports", href: "/patient/health-record", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
+  { name: "Patient List", href: "/doctor/patient-list", current: false },
+  { name: "Patient History", href: "/doctor/patient-history", current: false },
+  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -41,8 +37,8 @@ function classNames(...classes) {
 export default function AppointmentMgmt() {
 
     const [appointments, setAppointments] = useState([
-        { id: 1, date: '2022-05-15', time: '10:00 AM', patientName: 'John Doe' },
-        { id: 2, date: '2022-05-20', time: '02:30 PM', patientName: 'Jane Smith' },
+        { id: 1, date: '2022-05-15', time: '10:00 AM', purpose: 'Blood test', patientName: 'John Doe' },
+        { id: 2, date: '2022-05-20', time: '02:30 PM',purpose: 'Medical Checkup', patientName: 'Jane Smith' },
         // Add more appointments as needed
       ]);
     const handleDeleteAppointment = (id) => {
@@ -228,7 +224,8 @@ export default function AppointmentMgmt() {
                 <tr>
                 {/* <th scope="col">Sr<span class="ps-1">No</span></th> */}
                   <th scope="col">Patient<span class="ps-1">Name</span></th>
-                  <th scope="col">Date<span class="ps-1">of</span><span class="ps-1">Appointment</span></th>
+                  <th scope="col">Date<span class="ps-1">of</span><span class="ps-1">Appointment</span></th>                  
+                  <th scope="col">Time<span class="ps-1">of</span><span class="ps-1">Appointment</span></th>
                   <th scope="col">Appointment<span class="ps-1">Purpose</span></th>
                   <th scope="col">Accept<span class="ps-1">Request</span></th>
                   <th scope="col">Decline<span class="ps-1">Request</span></th>
@@ -238,9 +235,10 @@ export default function AppointmentMgmt() {
            {appointments.map((appointment) => (
             
             <tr key={appointment.id}>
+              <td>{appointment.patientName}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
-              <td>{appointment.patientName}</td>
+              <td>{appointment.purpose}</td>
               <td>
                 <button onClick={() => handleDeleteAppointment(appointment.id)} style={{ fontSize: '0.57rem',width: '125px', padding: '0.25rem 0.5rem' }}>Accept</button>
               </td>

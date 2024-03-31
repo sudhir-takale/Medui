@@ -13,16 +13,12 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/Doctor_Dashboard", current: false },
-  {
-    name: "Manage Appointment", 
-    href: "/AppointmentMgmt",
-    current: false,
-  },
-  { name: "Patient List", href: "/PatientList", current: false },
-  { name: "Patient History", href: "/PatientHistory", current: false },
-  { name: "Update PHR", href: "/UpdatePHR", current: false },
-  { name: "Reports", href: "/patient/health-record", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
+  { name: "Patient List", href: "/doctor/patient-list", current: false },
+  { name: "Patient History", href: "/doctor/patient-history", current: false },
+  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -247,7 +243,7 @@ export default function Doctor_Dashboard() {
               
               className="bg-blue-500 text-white px-4 py-2 mt-4 inline-block"
             >
-              <Link to="/AppointmentStats">View Appointment Stat</Link>
+              <Link to="/doctor/appointment-stats">View Appointment Stat</Link>
               {/* View Appointment Stat */}
             </a>
           </div>
