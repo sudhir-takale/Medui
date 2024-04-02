@@ -1,74 +1,55 @@
 import "./registration.css";
 import { useState } from "react";
-import { validateEmail } from "./utils";
 import axios from "axios";
-import Baseurl from "../../../api/Baseurl";
-
-const PasswordErrorMessage = () => {
-  return (
-    <p className="FieldError">Password should have at least 8 characters</p>
-  );
-};
 
 function PatientRegistration() {
-
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState({
-    value: "",
-    isTouched: false,
-  });
-
-  const [confirmPassword, setConfirmPassword] = useState({
-    value: "",
-    isTouched: false,
-  });
-
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-
-  const getIsFormValid = () => {
-    return (
-      firstName &&
-      validateEmail(email) &&
-      username !== "" &&
-      password.value.length >= 8 &&
-      password.value === confirmPassword.value &&
-      dob !== "" &&
-      gender !== "gender" &&
-      mobileNumber !== ""
-    );
-  };
+  const [bloodGroup, setBloodGroup] = useState("");
+  const [age, setAge] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
       firstName,
-      lastName,
+      address,
       email,
       username,
-      password: password.value,
-      confirmPassword: confirmPassword.value,
+      password,
+      confirmPassword,
       dob,
       gender,
       mobileNumber,
+      bloodGroup,
+      age,
     };
 
     try {
       const res = await axios.post(
-        `${Baseurl()}/patient-registration`,
+        "http://localhost:8080/patient/register",
         formData
       );
-      console.log(res);
-      console.log(res.data);
+
+      if (res.status === 200) {
+        window.location.href = "/patient";
+      }
     } catch (error) {
-      console.error("Error occurred while submitting the form:", error);
+      if (error.response && error.response.status === 400) {
+        alert("Username already taken");
+      } else {
+        console.error("Error occurred while submitting the form:", error);
+      }
     }
   };
+
   return (
     <div className="App1">
       <form onSubmit={handleSubmit}>
@@ -80,20 +61,16 @@ function PatientRegistration() {
             </label>
             <input
               value={firstName}
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
+              onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter First name"
             />
           </div>
           <div className="Field">
-            <label>Last name</label>
+            <label>Address</label>
             <input
-              value={lastName}
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              placeholder="Enter Last name"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter Address"
             />
           </div>
           <div className="Field">
@@ -102,86 +79,53 @@ function PatientRegistration() {
             </label>
             <input
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Email address"
             />
           </div>
-
           <div className="Field">
             <label>
               Username <sup>*</sup>
             </label>
             <input
               value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter Username"
             />
           </div>
-
           <div className="Field">
             <label>
               Password <sup>*</sup>
             </label>
             <input
-              value={password.value}
+              value={password}
               type="password"
-              onChange={(e) => {
-                setPassword({ ...password, value: e.target.value });
-              }}
-              onBlur={() => {
-                setPassword({ ...password, isTouched: true });
-              }}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter Password"
             />
-            {password.isTouched && password.value.length < 8 ? (
-              <PasswordErrorMessage />
-            ) : null}
           </div>
-
           <div className="Field">
             <label>
               Confirm Password <sup>*</sup>
             </label>
             <input
-              value={confirmPassword.value}
+              value={confirmPassword}
               type="password"
-              onChange={(e) => {
-                setConfirmPassword({
-                  ...confirmPassword,
-                  value: e.target.value,
-                });
-              }}
-              onBlur={() => {
-                setConfirmPassword({ ...confirmPassword, isTouched: true });
-              }}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm Password"
             />
-            {confirmPassword.isTouched &&
-            confirmPassword.value.length < 8 &&
-            confirmPassword.value !== password.value ? (
-              <PasswordErrorMessage />
-            ) : null}
           </div>
-
-          {
-            <div className="Field">
-              <label>
-                Mobile Number <sup>*</sup>
-              </label>
-              <input
-                type="tel"
-                value={mobileNumber}
-                onChange={(e) => {
-                  setMobileNumber(e.target.value);
-                }}
-                placeholder="Enter Mobile Number"
-              />
-            </div>
-          }
+          <div className="Field">
+            <label>
+              Mobile Number <sup>*</sup>
+            </label>
+            <input
+              type="tel"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              placeholder="Enter Mobile Number"
+            />
+          </div>
           <div className="Field">
             <label>
               Date of Birth <sup>*</sup>
@@ -189,29 +133,38 @@ function PatientRegistration() {
             <input
               type="date"
               value={dob}
-              onChange={(e) => {
-                setDob(e.target.value);
-              }}
+              onChange={(e) => setDob(e.target.value)}
             />
           </div>
           <div className="Field">
             <label>
               Gender <sup>*</sup>
             </label>
-            <select
-              value={gender}
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            >
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
               <option value="gender">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
           </div>
-
-          <button id="submit" type="submit" disabled={!getIsFormValid()}>
+          <div className="Field">
+            <label>Blood Group</label>
+            <input
+              value={bloodGroup}
+              onChange={(e) => setBloodGroup(e.target.value)}
+              placeholder="Enter Blood Group"
+            />
+          </div>
+          <div className="Field">
+            <label>Age</label>
+            <input
+              type="number"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              placeholder="Enter Age"
+            />
+          </div>
+          <button id="submit" type="submit">
             Create account
           </button>
         </fieldset>

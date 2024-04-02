@@ -1,33 +1,42 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Example() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = async () => {
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/patient/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      console.log(username);
+      console.log(password);
+      const response = await axios.post(
+        "http://localhost:8080/patient/login",
+        {
+          username,
+          password,
         },
-        credentials: "include", 
-        body: JSON.stringify({ username, password }),
-      });
+        {
+          withCredentials: true,
+        }
+      );
 
-      const responseData = await response.text();
-      console.log("Response Data:", responseData);
-
-      if (response.ok) {
-        const token = responseData;
-        console.log("Received token:", token);
+      if (response.status === 200) {
+        console.log("Login successful");
+        window.location.href = "/patient";
       } else {
         console.error("Login failed");
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      if (
+        (error.response && error.response.status === 401) ||
+        error.response.status === 405
+      ) {
+        alert("Invalid username or password");
+      }
+      console.error("Error during login:", error.message);
     }
   };
-
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -51,7 +60,7 @@ export default function Example() {
                   id="email"
                   name="email"
                   onChange={(e) => setUsername(e.target.value)}
-                  type="texdt"
+                  type="text"
                   autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

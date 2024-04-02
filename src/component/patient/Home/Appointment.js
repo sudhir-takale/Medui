@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Appointment.css";
 
 function Appointment() {
@@ -17,28 +18,10 @@ function Appointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Perform client-side validation
     const validationErrors = {};
     if (!formData.name.trim()) {
       validationErrors.name = "Name is required";
     }
-    // if (!formData.date) {
-    //   validationErrors.date = "Date is required";
-    // }
-    // if (!formData.time) {
-    //   validationErrors.time = "Time is required";
-    // }
-    // if (!formData.reason) {
-    //   validationErrors.reason = "Reason is required";
-    // }
-    // if (!formData.mode) {
-    //   validationErrors.mode = "Select a valid mode";
-    // }
-    // if (!formData.doctor) {
-    //   validationErrors.doctor = "Select a valid doctor";
-    // }
-
-    // Add more validations as needed
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -46,32 +29,21 @@ function Appointment() {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/api/appointments/create",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            date: formData.date,
-            time: formData.time,
-            reason: formData.reason,
-            mode: formData.mode,
-            doctor: formData.doctor,
-            notes: formData.notes,
-          }),
-        }
+      const response = await axios.post(
+        "http://localhost:8080/patient/requestAppointment",
+        formData
       );
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log("Appointment booked successfully");
-        // Additional logic after successful booking if needed
+        alert("Appointment booked Successfully!");
       } else {
         console.error("Failed to book appointment");
       }
     } catch (error) {
+      if (error.response && error.response.status === 404) {
+        alert("Make fields valid");
+      }
       console.error("Error:", error);
     }
   };
@@ -82,7 +54,6 @@ function Appointment() {
       [e.target.name]: e.target.value,
     });
 
-    // Clear validation errors when the user starts typing
     setErrors({
       ...errors,
       [e.target.name]: undefined,
