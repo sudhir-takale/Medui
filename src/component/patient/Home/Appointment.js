@@ -17,7 +17,7 @@ function Appointment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData.name);
     const validationErrors = {};
     if (!formData.name.trim()) {
       validationErrors.name = "Name is required";

@@ -11,11 +11,8 @@ export default function Example() {
       console.log(username);
       console.log(password);
       const response = await axios.post(
-        "http://localhost:8080/patient/login",
-        {
-          username,
-          password,
-        },
+        `http://localhost:8080/patient/login?username=${username}&password=${password}`,
+        {},
         {
           withCredentials: true,
         }
@@ -23,6 +20,7 @@ export default function Example() {
 
       if (response.status === 200) {
         console.log("Login successful");
+        console.log(response.data);
         window.location.href = "/patient";
       } else {
         console.error("Login failed");
