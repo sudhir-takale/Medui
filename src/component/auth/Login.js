@@ -14,12 +14,28 @@ export default function Login() {
     };
 
     try {
+<<<<<<< HEAD
       const res = await axios.post(
         "http://localhost:8080/patient/login",
         formData
       );
 
       if (res.status === 200) {
+=======
+      console.log(username);
+      console.log(password);
+      const response = await axios.post(
+        `http://localhost:8080/patient/login?username=${username}&password=${password}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Login successful");
+        console.log(response.data);
+>>>>>>> f7a4e3ba7f0f48a665e58072e9892a91ff5f4406
         window.location.href = "/patient";
       }
     } catch (error) {

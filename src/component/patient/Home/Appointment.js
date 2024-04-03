@@ -8,7 +8,7 @@ function Appointment() {
     time: "",
     reason: "",
     notes: "",
-    username :"sudhir",
+    username: "sudhir",
   });
 
   const [errors, setErrors] = useState({});
@@ -85,7 +85,7 @@ function Appointment() {
               <input
                 placeholder="Select Appointment Date"
                 type="date"
-                name = "date"
+                name="date"
                 className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
               />
               {errors.date && <span className="errors">{errors.date}</span>}
