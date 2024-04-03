@@ -2,8 +2,8 @@ import React from "react";
 
 const OurDoctors = () => {
   return (
-    <section className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
-      <div className="container mx-auto">
+    <section className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]" >
+      <div className="container mx-auto" id="Our-Team">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-[60px] max-w-[510px] text-center">

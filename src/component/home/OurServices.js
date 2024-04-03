@@ -2,7 +2,10 @@ import React from "react";
 
 const OurServices = () => {
   return (
-    <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <section
+      className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
+      id="services"
+    >
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -14,7 +17,12 @@ const OurServices = () => {
                 What We Offer
               </h2>
               <p className="text-base text-body-color dark:text-dark-6">
-              At MedRecord, we provide cutting-edge authentication solutions tailored specifically for safeguarding personal health records (PHRs) in cloud computing environments. With our comprehensive authentication scheme, you can trust that your sensitive health data remains secure and accessible only to authorized individuals.
+                At MedRecord, we provide cutting-edge authentication solutions
+                tailored specifically for safeguarding personal health records
+                (PHRs) in cloud computing environments. With our comprehensive
+                authentication scheme, you can trust that your sensitive health
+                data remains secure and accessible only to authorized
+                individuals.
               </p>
             </div>
           </div>
@@ -23,7 +31,7 @@ const OurServices = () => {
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
             title="Authentication Service"
-            details="Develop a centralized authentication service responsible for verifying the identity of users attempting to access PHRs. This service should support multi-factor authentication (MFA) to enhance security."
+            details="The Authentication Service serves as a centralized gateway for verifying user identities seeking access to Personal Health Records (PHRs), ensuring robust security measures are in place. With a focus on enhancing security, the service supports multi-factor authentication (MFA), empowering users to secure their accounts with additional layers of verification beyond traditional passwords. Upon registration, users are guided through a seamless process where they provide necessary personal information, create unique login credentials, and set up preferred MFA methods."
             icon={
               <svg
                 width="36"
@@ -41,7 +49,7 @@ const OurServices = () => {
           />
           <ServiceCard
             title="Access Control Service"
-            details="Create an access control service that enforces role-based access control (RBAC) policies to manage user permissions and access rights to PHRs. Define roles such as patients, healthcare providers, and administrators, and assign appropriate access privileges to each role."
+            details="The Access Control Service within the Personal Health Record (PHR) system is a fundamental component dedicated to managing user permissions and access rights through role-based access control (RBAC) policies. Tailored to meet the diverse needs of various user types, including patients, healthcare providers, and administrators, this service ensures that access to sensitive health information is carefully regulated and aligned with established roles and responsibilities."
             icon={
               <svg
                 width="36"
@@ -61,7 +69,7 @@ const OurServices = () => {
           />
           <ServiceCard
             title="Performance Optimization Service"
-            details="This service is responsible for maximizing the speed, responsiveness, and scalability of the healthcare system to ensure optimal performance under varying workloads and usage scenarios."
+            details="The Performance Optimization Service is a pivotal component within the healthcare system, dedicated to enhancing its speed, responsiveness, and scalability to deliver an unparalleled user experience across diverse workloads and usage scenarios. With a focus on efficiency and reliability, this service employs a multifaceted approach to fine-tune system performance and mitigate bottlenecks, ensuring seamless access to critical healthcare resources for patients, providers, and administrators."
             icon={
               <svg
                 width="36"
@@ -91,7 +99,7 @@ const OurServices = () => {
           />
           <ServiceCard
             title="Monitoring and Audit Service"
-            details="Implement monitoring and audit services to track user activities and access logs related to PHR access. Record relevant information such as user identities, timestamps, and accessed resources to maintain an audit trail."
+            details="The Monitoring and Audit Service tracks user activities and access logs within the PHR system, recording user identities, timestamps, and accessed resources. It offers real-time monitoring for incident detection and maintains comprehensive audit trails for forensic analysis and compliance reporting."
             icon={
               <svg
                 width="36"
@@ -113,7 +121,7 @@ const OurServices = () => {
           />
           <ServiceCard
             title="Medical Database Updates"
-            details="Regularly update the medical databases containing information such as drug databases, disease classifications, diagnostic criteria, and treatment guidelines."
+            details="The Medical Database Updates service is crucial for maintaining the accuracy, relevance, and reliability of medical databases within the healthcare system. This service ensures that essential information, including drug databases, disease classifications, diagnostic criteria, and treatment guidelines, remains up-to-date and reflects the latest advancements in medical knowledge and best practices."
             icon={
               <svg
                 width="36"
@@ -131,7 +139,7 @@ const OurServices = () => {
           />
           <ServiceCard
             title="Personalization and Customization Service"
-            details="This service is responsible for enabling users to customize their healthcare experience, tailor system settings to their preferences, and adapt the interface to meet their unique requirements."
+            details="The Personalization and Customization Service is a pivotal component within the healthcare system, dedicated to empowering users to tailor their healthcare experience according to their individual preferences and needs. By providing robust customization options and adaptive interface features, this service ensures that users can personalize their interactions with the system to enhance usability, efficiency, and satisfaction."
             icon={
               <svg
                 width="36"

@@ -5,8 +5,8 @@ const Blogs = () => {
     <>
       <section className="bg-white pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
         <div className="container">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
+          <div className="-mx-4 flex flex-wrap" >
+            <div className="w-full px-4" id="Blogs">
               <div className="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-20">
                 <span className="mb-2 block text-lg font-semibold text-primary">
                   Our Blogs

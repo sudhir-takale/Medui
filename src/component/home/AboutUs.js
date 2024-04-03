@@ -590,8 +590,8 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div className="mt-10 lg:mt-0">
+            <div className="w-full px-4 lg:w-1/2 xl:w-5/12" >
+              <div className="mt-10 lg:mt-0" id="AboutUs">
                 <span className="block mb-4 text-lg font-semibold text-primary">
                   Why Choose Us
                 </span>
@@ -599,10 +599,17 @@ const AboutUs = () => {
                   Make your customers happy by giving our premium services.
                 </h3>
                 <p className="mb-5 text-base text-body-color dark:text-dark-6">
-                For secure authentication of personal health records in the cloud, choose us. With unmatched expertise and dedication, we ensure the safeguarding of PHRs with robust security measures and tailored solutions. 
+                  For secure authentication of personal health records in the
+                  cloud, choose us. With unmatched expertise and dedication, we
+                  ensure the safeguarding of PHRs with robust security measures
+                  and tailored solutions.
                 </p>
                 <p className="mb-8 text-base text-body-color dark:text-dark-6">
-                We use top-notch security methods like strong encryption, multi-factor authentication, and strict access controls to protect your personal health records from hackers and unauthorized access. You can trust us to keep your data safe and stay ahead of new security threats in healthcare.
+                  We use top-notch security methods like strong encryption,
+                  multi-factor authentication, and strict access controls to
+                  protect your personal health records from hackers and
+                  unauthorized access. You can trust us to keep your data safe
+                  and stay ahead of new security threats in healthcare.
                 </p>
                 <a
                   href="/"
