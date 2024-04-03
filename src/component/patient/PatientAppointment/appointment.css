@@ -21,3 +21,53 @@
 .appointment-table tr:hover {
     background-color: #e2e2e2;
 }
+
+/* Add this CSS to your Appointment.css file */
+select {
+    color: white;
+    /* Font color */
+    background-color: #333;
+    /* Background color */
+    border: 1px solid #555;
+    /* Border color */
+    border-radius: 4px;
+    /* Border radius */
+    padding: 8px;
+    /* Padding */
+    width: 100%;
+    /* Full width */
+    margin-bottom: 10px;
+    /* Margin bottom */
+}
+
+option {
+    color: black;
+    /* Font color for options */
+    background-color: white;
+    /* Background color for options */
+}
+
+/* Add this CSS to your Appointment.css file */
+select {
+    color: white;
+    /* Font color for the dropdown button */
+    background-color: #333;
+    /* Background color for the dropdown button */
+    border: 1px solid #555;
+    /* Border color for the dropdown button */
+    border-radius: 4px;
+    /* Border radius for the dropdown button */
+    padding: 8px;
+    /* Padding for the dropdown button */
+    width: 100%;
+    /* Full width for the dropdown button */
+    margin-bottom: 10px;
+    /* Margin bottom for the dropdown button */
+}
+
+select option {
+    color: black;
+    /* Font color for the dropdown options */
+    background-color: white;
+    /* Background color for the dropdown options */
+}

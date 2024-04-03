@@ -1,42 +1,68 @@
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const notify = () =>
+    toast.error("Invalid Username or Password", {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
+  const logged = () =>
+    toast.success("Login Successfully", {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      username,
-      password,
-    };
-
     try {
+      console.log(username);
+      console.log(password);
       const response = await axios.post(
-        "http://localhost:8080/patient/login",
-        formData
+        `http://localhost:8080/patient/login?username=${username}&password=${password}`,
+        {},
+        {
+          withCredentials: true,
+        }
       );
 
-      console.log(password);
       if (response.status === 200) {
         console.log("Login successful");
         console.log(response.data);
+        logged();
         window.location.href = "/patient";
+      } else {
+        console.error("Login failed");
+        notify();
       }
     } catch (error) {
       if (
-        (error.response && error.response.status === 400) ||
-        error.response.status === 401
+        (error.response && error.response.status === 401) ||
+        error.response.status === 405
       ) {
-        alert("Check your Credentials");
-      } else {
-        console.error("Error occurred while submitting the form:", error);
+        notify();
       }
+      console.error("Error during login:", error.message);
     }
   };
-
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -105,6 +131,7 @@ export default function Login() {
               </button>
             </div>
           </form>
+          <ToastContainer />
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not have account?{" "}

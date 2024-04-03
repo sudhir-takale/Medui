@@ -1,6 +1,7 @@
 import "./registration.css";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function PatientRegistration() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,32 @@ function PatientRegistration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const logged = () =>
+      toast.success("Patient Registered Successfully !", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+
+    const warning = () =>
+      toast.warn("Username already taken !", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
 
     const formData = {
       firstName,
@@ -39,11 +66,12 @@ function PatientRegistration() {
       );
 
       if (res.status === 200) {
+        logged();
         window.location.href = "/patient";
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        alert("Username already taken");
+        warning();
       } else {
         console.error("Error occurred while submitting the form:", error);
       }
@@ -52,6 +80,7 @@ function PatientRegistration() {
 
   return (
     <div className="App1">
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <fieldset>
           <h2 id="sign-up">Sign Up</h2>
