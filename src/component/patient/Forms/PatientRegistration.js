@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function PatientRegistration() {
-  const [firstName, setFirstName] = useState("");
+  const [patientName, setFirstName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ function PatientRegistration() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phoneNo, setMobileNumber] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [age, setAge] = useState("");
 
@@ -46,7 +46,7 @@ function PatientRegistration() {
       });
 
     const formData = {
-      firstName,
+      patientName,
       address,
       email,
       username,
@@ -54,7 +54,7 @@ function PatientRegistration() {
       confirmPassword,
       dob,
       gender,
-      mobileNumber,
+      phoneNo,
       bloodGroup,
       age,
     };
@@ -67,7 +67,7 @@ function PatientRegistration() {
 
       if (res.status === 200) {
         logged();
-        window.location.href = "/patient";
+        // window.location.href = "/patient";
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -89,7 +89,8 @@ function PatientRegistration() {
               First name <sup>*</sup>
             </label>
             <input
-              value={firstName}
+              value={patientName}
+              name="patientName"
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter First name"
             />
@@ -150,7 +151,8 @@ function PatientRegistration() {
             </label>
             <input
               type="tel"
-              value={mobileNumber}
+              value={phoneNo}
+              name="phoneNo"
               onChange={(e) => setMobileNumber(e.target.value)}
               placeholder="Enter Mobile Number"
             />
