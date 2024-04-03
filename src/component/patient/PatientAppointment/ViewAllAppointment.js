@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Baseurl from "../../../api/Baseurl";
+// import Baseurl from "../../../api/Baseurl";
 import "./appointment.css";
+
 function ViewAllAppointment() {
   const [appointments, setAppointments] = useState([]);
 
@@ -11,7 +12,10 @@ function ViewAllAppointment() {
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get(`${Baseurl()}/patient/appointments`);
+      const response = await axios.get(
+        "http://localhost:8080/patient/getAllAppointments"
+      );
+      console.log("API Response:", response.data);
       setAppointments(response.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
@@ -36,10 +40,10 @@ function ViewAllAppointment() {
           {appointments.map((appointment, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{appointment.doctorName}</td>
+              <td>{appointment.doctorUsername}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
-              <td>{appointment.status}</td>
+              <td>{appointment.reason}</td>
               <td>{appointment.reason}</td>
               <td>{appointment.notes}</td>
             </tr>

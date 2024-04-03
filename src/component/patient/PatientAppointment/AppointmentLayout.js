@@ -1,7 +1,7 @@
 import React from "react";
 import "./appointmentlay.css";
 import MainHome from "./MainHome";
-import ViewAllAppointment from "./ViewAllAppointment";
+import ViewAllAppointment from "./AppointmentHeader";
 import { Outlet } from "react-router-dom";
 
 function AppointmentLayout() {

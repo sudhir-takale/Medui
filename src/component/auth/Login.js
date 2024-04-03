@@ -1,42 +1,39 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Example() {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = {
+      username,
+      password,
+    };
+
     try {
-      console.log(username);
-      console.log(password);
-      const response = await axios.post(
+      const res = await axios.post(
         "http://localhost:8080/patient/login",
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
+        formData
       );
 
-      if (response.status === 200) {
-        console.log("Login successful");
+      if (res.status === 200) {
         window.location.href = "/patient";
-      } else {
-        console.error("Login failed");
       }
     } catch (error) {
       if (
-        (error.response && error.response.status === 401) ||
-        error.response.status === 405
+        (error.response && error.response.status === 400) ||
+        error.response.status === 401
       ) {
-        alert("Invalid username or password");
+        alert("Check your Credentials");
+      } else {
+        console.error("Error occurred while submitting the form:", error);
       }
-      console.error("Error during login:", error.message);
     }
   };
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -47,7 +44,7 @@ export default function Example() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleLogin}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -57,11 +54,9 @@ export default function Example() {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
+                  name="username"
                   onChange={(e) => setUsername(e.target.value)}
                   type="text"
-                  autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

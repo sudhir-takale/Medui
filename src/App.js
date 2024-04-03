@@ -16,6 +16,7 @@ import PatientList from "./component/doctor/PatientList/PatientList";
 import DoctorRegistration from "./component/doctor/Registration/DoctorRegistration";
 import UpdatePHR from "./component/doctor/UpdatePHR/UpdatePHR";
 import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
+import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           >
             <Route
               path="/patient/manage-appointment/appointments"
-              element={<div>Hii iam all appointment</div>}
+              element={<ViewAllAppointment/>}
             />
             <Route
               path="/patient/manage-appointment/confirmed"

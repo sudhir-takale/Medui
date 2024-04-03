@@ -31,7 +31,7 @@ function MainHome() {
             </Button>
             <ListGroup>
               <Link
-                to="/patient/manage-appointment/appointments"
+                to="/patient/manage-appointment/appointments" // Updated route here
                 className="list-group-item"
               >
                 All Appointments

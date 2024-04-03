@@ -4,13 +4,11 @@ import "./Appointment.css";
 
 function Appointment() {
   const [formData, setFormData] = useState({
-    name: "",
     date: "",
     time: "",
     reason: "",
-    mode: "",
-    doctor: "",
     notes: "",
+    username :"sudhir",
   });
 
   const [errors, setErrors] = useState({});
@@ -18,20 +16,15 @@ function Appointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationErrors = {};
-    if (!formData.name.trim()) {
-      validationErrors.name = "Name is required";
-    }
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
     try {
       const response = await axios.post(
         "http://localhost:8080/patient/requestAppointment",
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       if (response.status === 200) {
@@ -92,6 +85,7 @@ function Appointment() {
               <input
                 placeholder="Select Appointment Date"
                 type="date"
+                name = "date"
                 className="w-full border-b-2 roundme border-gray-400 focus:outline-none focus:border-blue-500"
               />
               {errors.date && <span className="errors">{errors.date}</span>}
