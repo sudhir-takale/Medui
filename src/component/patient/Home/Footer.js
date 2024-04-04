@@ -69,13 +69,14 @@ const Footer = () => {
               <NavLink link="/#contactus" label="Contact & Support" />
               <NavLink link="/#services" label="Our Services" />
               <NavLink link="/#Our-Team" label="Know Our Team" />
-              <NavLink link="/#faq" label="FAQ" />
+             
             </LinkGroup>
             <LinkGroup header="Menus">
               <NavLink link="/#" label="Patient Guides" />
               {/* <NavLink link="/#" label="Super Specialties" />
               <NavLink link="/#" label="Patient Guides" /> */}
               <NavLink link="/#" label="Gallery" />
+              <NavLink link="/#faq" label="FAQ" />
             </LinkGroup>
 
             <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
