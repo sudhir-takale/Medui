@@ -1,42 +1,39 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Table from "react-bootstrap/Table";
 
 function DoctorList() {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/doctor/getDoctors")
+      .then((response) => {
+        setDoctors(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching Doctors:", error);
+      });
+  }, []);
+
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th>#</th>
           <th>First Name</th>
-          <th>First Name</th>
-          <th>First Name</th>
-          <th>Last Name</th>
           <th>Username</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>Otto</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>Thornton</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
+        {doctors.map((doctor) => (
+          <tr key={doctor.id}>
+            <td>{doctor.id}</td>
+            <td>{doctor.doctorName}</td>
+            <td>{doctor.username}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

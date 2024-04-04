@@ -7,24 +7,32 @@ import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
 
 import Appointment from "./component/patient/PatientAppointment/MainHome";
 import Registration from "./component/patient/Forms/PatientRegistration";
-import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
-// import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
 import AppointmentStats from "./component/doctor/AppointmentStats/AppointmentStats";
 import AppointmentMgmt from "./component/doctor/AppointmentManagement/AppointmentMgmt";
 import PatientHistory from "./component/doctor/PatientHistory/PatientHistory";
-import PatientList from "./component/doctor/PatientList/PatientList";
+// import PatientList from "./component/doctor/PatientList/PatientList";
+import PatientList from "./component/Admin/PatientList";
 import DoctorRegistration from "./component/doctor/Registration/DoctorRegistration";
 import UpdatePHR from "./component/doctor/UpdatePHR/UpdatePHR";
 import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
 import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
+import AdminLayout from "./component/Admin/AdminLayout";
+import AdminDashboard from "./component/Admin/AdminDashboard";
+import PendingRequest from "./component/Admin/PendingRequest";
+import DoctorList from "./component/Admin/DoctorList";
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/admin" element={<AdminRoutes />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin/" element={<AdminDashboard />} />
+            <Route path="/admin/all-doctor" element={<DoctorList />} />
+            <Route path="/admin/all-patient" element={<PatientList />} />
+            <Route path="/admin/pending-request" element={<PendingRequest />} />
+          </Route>
 
           <Route path="/" element={<Home />} />
           {/* Login and Registration */}
@@ -41,7 +49,7 @@ function App() {
           >
             <Route
               path="/patient/manage-appointment/appointments"
-              element={<ViewAllAppointment/>}
+              element={<ViewAllAppointment />}
             />
             <Route
               path="/patient/manage-appointment/confirmed"

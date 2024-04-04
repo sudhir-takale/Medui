@@ -1,0 +1,39 @@
+.admin-dashboard {
+    padding: 20px;
+}
+
+.stats-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.stats-card {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.stats-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.stats-card p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.stats-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stats-card li {
+    margin-bottom: 5px;
+}

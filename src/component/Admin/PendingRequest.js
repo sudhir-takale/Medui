@@ -1,15 +1,15 @@
 import React from "react";
 
 const TdStyle = {
-  ThStyle: `w-1/6 min-w-[160px] border-l border-transparent py-4 px-3 text-lg font-medium text-white lg:py-7 lg:px-4`,
-  TdStyle: `text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] dark:bg-dark-3 dark:border-dark dark:text-dark-7 py-5 px-2 text-center text-base font-medium`,
-  TdStyle2: `text-dark border-b border-[#E8E8E8] bg-white dark:border-dark dark:bg-dark-2 dark:text-dark-7 py-5 px-2 text-center text-base font-medium`,
-  TdButton: `inline-block px-6 py-2.5 border rounded-md border-primary text-primary hover:bg-primary hover:text-white font-medium`,
+  ThStyle: `w-1/6 min-w-[160px] border-l border-transparent py-2 text-lg font-medium text-white lg:py-7 lg:px-4`,
+  TdStyle: `text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] dark:bg-dark-3 dark:border-dark dark:text-dark-7 py-2  text-center text-base font-medium`,
+  TdStyle2: `text-dark border-b border-[#E8E8E8] bg-white dark:border-dark dark:bg-dark-2 dark:text-dark-7 py-1 text-center text-base font-medium`,
+  TdButton: `inline-block px-2 py-2 border rounded-md border-primary text-primary  font-medium`,
 };
 
 const PendingRequest = () => {
   return (
-    <section className="bg-white dark:bg-dark py-20 lg:py-[120px]">
+    <section className="bg-white dark:bg-dark py-10 lg:py-[1px]">
       <div className="container">
         <div className="flex flex-wrap -mx-4">
           <div className="w-full ">
@@ -22,6 +22,7 @@ const PendingRequest = () => {
                     <th className={TdStyle.ThStyle}> Registration </th>
                     <th className={TdStyle.ThStyle}> Renewal </th>
                     <th className={TdStyle.ThStyle}> Transfer </th>
+                    <th className={TdStyle.ThStyle}> Register </th>
                     <th className={TdStyle.ThStyle}> Register </th>
                   </tr>
                 </thead>
@@ -38,13 +39,6 @@ const PendingRequest = () => {
                         Sign Up
                       </a>
                     </td>
-                  </tr>
-                  <tr>
-                    <td className={TdStyle.TdStyle}>.com</td>
-                    <td className={TdStyle.TdStyle2}>1 Year</td>
-                    <td className={TdStyle.TdStyle}>$75.00</td>
-                    <td className={TdStyle.TdStyle2}>$5.00</td>
-                    <td className={TdStyle.TdStyle}>$10.00</td>
                     <td className={TdStyle.TdStyle2}>
                       <a href="/#" className={TdStyle.TdButton}>
                         Sign Up
@@ -62,6 +56,11 @@ const PendingRequest = () => {
                         Sign Up
                       </a>
                     </td>
+                    <td className={TdStyle.TdStyle2}>
+                      <a href="/#" className={TdStyle.TdButton}>
+                        Sign Up
+                      </a>
+                    </td>
                   </tr>
                   <tr>
                     <td className={TdStyle.TdStyle}>.com</td>
@@ -69,6 +68,28 @@ const PendingRequest = () => {
                     <td className={TdStyle.TdStyle}>$75.00</td>
                     <td className={TdStyle.TdStyle2}>$5.00</td>
                     <td className={TdStyle.TdStyle}>$10.00</td>
+                    <td className={TdStyle.TdStyle2}>
+                      <a href="/#" className={TdStyle.TdButton}>
+                        Sign Up
+                      </a>
+                    </td>
+                    <td className={TdStyle.TdStyle2}>
+                      <a href="/#" className={TdStyle.TdButton}>
+                        Sign Up
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={TdStyle.TdStyle}>.com</td>
+                    <td className={TdStyle.TdStyle2}>1 Year</td>
+                    <td className={TdStyle.TdStyle}>$75.00</td>
+                    <td className={TdStyle.TdStyle2}>$5.00</td>
+                    <td className={TdStyle.TdStyle}>$10.00</td>
+                    <td className={TdStyle.TdStyle2}>
+                      <a href="/#" className={TdStyle.TdButton}>
+                        Sign Up
+                      </a>
+                    </td>
                     <td className={TdStyle.TdStyle2}>
                       <a href="/#" className={TdStyle.TdButton}>
                         Sign Up

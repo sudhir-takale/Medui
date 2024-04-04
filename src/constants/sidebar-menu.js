@@ -13,20 +13,20 @@ const sidebar_menu = [
   {
     id: 2,
     icon: ProductIcon,
-    path: "/orders",
-    title: "Orders",
+    path: "/admin/all-doctor",
+    title: "All Doctors",
   },
   {
     id: 3,
     icon: ShippingIcon,
-    path: "/products",
-    title: "Products",
+    path: "/admin/all-patient",
+    title: "All Patients",
   },
   {
     id: 4,
     icon: UserIcon,
-    path: "/profile",
-    title: "My account",
+    path: "/admin/show-pending-request",
+    title: "Show Pending Requests",
   },
 ];
 
