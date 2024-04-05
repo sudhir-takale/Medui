@@ -21,11 +21,11 @@ const navigation = [
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/doctor/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -85,23 +85,6 @@ export default function AppointmentMgmt() {
     };
     
 
-      // useEffect(() => {
-
-      //   var username = localStorage.getItem("username");
-
-      //   // Fetch data from the API endpoint when the component mounts
-      //   axios.get(`http://localhost:8080/getAllAppointments?doctorUsername=${username}&status=Pending`)
-      //     .then((response) => {
-      //       console.log(response.data);
-      //       setAppointmentData(response.data);
-      //       if(appointmentData.length === 0){
-      //         setnoAppointment="No Appointments Available";
-      //       }
-      //     })
-      //     .catch((error) => {
-      //       console.error("Error fetching appointments:", error);
-      //     });
-      // }, []);
 
       useEffect(() => {
         var username = localStorage.getItem("username");

@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -10,7 +10,6 @@ import "./updateprofile.css";
 import Footer from "../../patient/Home/Footer";
 
 const userData = {
-
     
     username: localStorage.getItem("username"),
     firstName: localStorage.getItem("firstName"),
@@ -24,6 +23,7 @@ const userData = {
     specialization: localStorage.getItem("specialization"),
     licenseNumber: localStorage.getItem("licenseNumber"),
   };
+
   console.log(localStorage.getItem("address"));
 
 
@@ -68,8 +68,9 @@ function classNames(...classes) {
 
 export default function UpdateProfile() {
 
+
     const [formData, setFormData] = useState({
-        username: userData.username,
+        // username: userData.username,
         firstName: userData.firstName,
         lastName: userData.lastName,
         email: userData.email,
@@ -81,23 +82,37 @@ export default function UpdateProfile() {
         licenseNumber: userData.licenseNumber,
       });
     
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
+      
+      useEffect(() => {
+        // localStorage.setItem("username", formData.username);
+        localStorage.setItem("firstName", formData.firstName);
+        localStorage.setItem("lastName", formData.lastName);
+        localStorage.setItem("email", formData.email);
+        localStorage.setItem("mobile", formData.mobile);
+        localStorage.setItem("age", formData.age);
+        localStorage.setItem("gender", formData.gender);
+        localStorage.setItem("address", formData.address);
+        localStorage.setItem("specialization", formData.specialization);
+        localStorage.setItem("licenseNumber", formData.licenseNumber);
+      }, [formData]);
+
     
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
           const response = await axios.put(`http://localhost:8080/doctor/updateDoctor/${userData.username}`, formData);
-          console.log(response.data); // Handle success response
-        } catch (error) {
+          console.log(response.data); 
+
+          
+            window.location.href = "/doctor/profile";
+          
+
+         } catch (error) {
           console.error("Error updating profile:", error); // Handle error
+          // Optionally, you can display an error message to the user or handle the error in another way.
         }
       };
+      
     
   return (
 
@@ -269,148 +284,131 @@ export default function UpdateProfile() {
         </Disclosure>
         
 
-      {/* Your existing JSX for header and navigation */}
-      <div className="min-h-full">
-        {/* Your existing JSX for header and navigation */}
-        <div className="profile-container">
-          <div className="profile-section">
-            <h2>Update Doctor Profile</h2>
-            <form onSubmit={handleSubmit}>
-              {/* Form fields */}
-              <div className="grid-container">
-                {/* Username */}
-                {/* <div><strong>Username:</strong></div>
-                <div>{userData.username}</div> */}
 
-                <div><strong>User Name:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+<div className="min-h-full">
+      <div className="profile-container">
+        <div className="profile-section">
+          <h2>Update Doctor Profile</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="grid-container">
+            
 
-                {/* First Name */}
-                <div><strong>First Name:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Last Name */}
-                <div><strong>Last Name:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Email */}
-                <div><strong>Email:</strong></div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Mobile */}
-                <div><strong>Mobile:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Age */}
-                <div><strong>Age:</strong></div>
-                <div>
-                  <input
-                    type="number"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleChange}
-                  />
-                </div>
-                {/* Gender */}
-                <div><strong>Gender:</strong></div>
-                <div>
-                  <select
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                  >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                {/* Address */}
-                <div><strong>Address:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                  />
-                </div>
-                {/* Specialization */}
-                <div><strong>Specialization:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="specialization"
-                    value={formData.specialization}
-                    onChange={handleChange}
-                  />
-                </div>
-                {/* License Number */}
-                <div><strong>License Number:</strong></div>
-                <div>
-                  <input
-                    type="text"
-                    name="licenseNumber"
-                    value={formData.licenseNumber}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div><strong>First Name:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  required
+                />
               </div>
-              {/* Submit button */}
-              <button type="submit" className="btn-update-profile">Update Profile</button>
-            </form>
-          </div>
+
+              <div><strong>Last Name:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div><strong>Email:</strong></div>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) => {
+                    const { name, value } = e.target;
+                    setFormData({ ...formData, [name]: value });
+                    localStorage.setItem(name, value);
+                  }}
+                  required
+                />
+              </div>
+
+              <div><strong>Mobile:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  required
+                />
+              </div>
+              {/* End of first section */}
+            </div>
+
+            <div className="grid-container">
+              {/* Second section */}
+              <div><strong>Age:</strong></div>
+              <div>
+                <input
+                  type="number"
+                  name="age"
+                  value={formData.age}
+                  onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                />
+              </div>
+
+              <div><strong>Gender:</strong></div>
+              <div>
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div><strong>Address:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                />
+              </div>
+
+              <div><strong>Specialization:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="specialization"
+                  value={formData.specialization}
+                  onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
+                />
+              </div>
+
+              <div><strong>License Number:</strong></div>
+              <div>
+                <input
+                  type="text"
+                  name="licenseNumber"
+                  value={formData.licenseNumber}
+                  onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
+                />
+              </div>
+              {/* End of second section */}
+            </div>
+
+            {/* Submit button */}
+            <button type="submit" className="btn-update-profile">Update Profile</button>
+          </form>
         </div>
       </div>
+    </div>
 
 
-        <div
-          className="bg-cover bg-center"
-          style={{
-            backgroundImage:
-              'url("https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=")',
-            height: "auto",
-          }}
-        >
-          {/* <Appointment /> */}
-        </div>
-        
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

@@ -229,7 +229,6 @@ export default function UpdatePHR() {
             <h1>Update Patient Health Record</h1>
           </header>
           <form onSubmit={handleSubmit}>
-            {/* Medical Update */}
             <div className="mb-4">
               <label htmlFor="medicalUpdate" className="block mb-1">
                 Medical Update:
@@ -244,7 +243,6 @@ export default function UpdatePHR() {
               ></textarea>
             </div>
 
-            {/* Personal Information */}
             <div className="mb-4">
               <label htmlFor="personalInfo" className="block mb-1">
                 Personal Information:
@@ -259,7 +257,6 @@ export default function UpdatePHR() {
               ></textarea>
             </div>
 
-            {/* Updated By */}
             <div className="mb-4">
               <label htmlFor="updatedBy" className="block mb-1">
                 Updated By:
@@ -275,7 +272,6 @@ export default function UpdatePHR() {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
@@ -285,7 +281,9 @@ export default function UpdatePHR() {
           </form>
         </div>
         
-        <Footer />
+        {/* <Footer /> */}
+
+
       </div>
     </>
   );
