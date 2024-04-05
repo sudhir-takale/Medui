@@ -10,7 +10,11 @@ import Login from "./component/auth/Login";
 import AppointmentStats from "./component/doctor/AppointmentStats/AppointmentStats";
 import AppointmentMgmt from "./component/doctor/AppointmentManagement/AppointmentMgmt";
 import PatientHistory from "./component/doctor/PatientHistory/PatientHistory";
-import PatientList from "./component/Admin/PatientList";
+
+import PatientList1 from "./component/Admin/PatientList";
+import PatientList from "./component/doctor/PatientList/PatientList";
+
+
 import DoctorRegistration from "./component/doctor/Registration/DoctorRegistration";
 import UpdatePHR from "./component/doctor/UpdatePHR/UpdatePHR";
 import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
@@ -19,6 +23,7 @@ import AdminLayout from "./component/Admin/AdminLayout";
 import AdminDashboard from "./component/Admin/AdminDashboard";
 import PendingRequest from "./component/Admin/PendingRequest";
 import DoctorList from "./component/Admin/DoctorList";
+
 import Confirmed from "./component/patient/PatientAppointment/Confirmed";
 import Pending from "./component/patient/PatientAppointment/Pending";
 import Rejected from "./component/patient/PatientAppointment/Rejected";
@@ -26,6 +31,10 @@ import Completed from "./component/patient/PatientAppointment/Completed";
 import PHRLayout from "./component/patient/HealthRecord/PHRLayout";
 import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
 import AccessPhr from "./component/patient/HealthRecord/AccessPhr";
+import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
+
+import Profile from "./component/doctor/Profile/Profile";
+import UpdateProfile from "./component/doctor/UpdateProfile/UpdateProfile";
 
 function App() {
   return (
@@ -35,11 +44,12 @@ function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin/" element={<AdminDashboard />} />
             <Route path="/admin/all-doctor" element={<DoctorList />} />
-            <Route path="/admin/all-patient" element={<PatientList />} />
+            <Route path="/admin/all-patient" element={<PatientList1 />} />
             <Route path="/admin/pending-request" element={<PendingRequest />} />
           </Route>
 
           <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Doctor_Dashboard />} /> */}
           {/* Login and Registration */}
 
           <Route path="/patient-registration" element={<Registration />} />
@@ -95,16 +105,14 @@ function App() {
           <Route path="/patient/notification" element={<Appointment />} />
 
           {/* Doctor Routes  */}
-          {/* <Route path="/doctor/dashboard" element={<Doctor_Dashboard />} /> */}
+          <Route path="/doctor" element={<Doctor_Dashboard />} />
+
+          <Route path="/doctor/profile" element={<Profile />} />
+          <Route path="/doctor/update-profile" element={<UpdateProfile />} />
+
           <Route path="/doctor-registration" element={<DoctorRegistration />} />
-          <Route
-            path="/doctor/appointment-stats"
-            element={<AppointmentStats />}
-          />
-          <Route
-            path="/doctor/appointment-mgmt"
-            element={<AppointmentMgmt />}
-          />
+          <Route path="/doctor/appointment-stats" element={<AppointmentStats />} />
+          <Route path="/doctor/appointment-mgmt" element={<AppointmentMgmt />} />
           <Route path="/doctor/patient-history" element={<PatientHistory />} />
           <Route path="/doctor/patient-list" element={<PatientList />} />
           <Route path="/doctor/update-phr" element={<UpdatePHR />} />

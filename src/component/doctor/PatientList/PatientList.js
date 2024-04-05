@@ -1,5 +1,7 @@
 import { Fragment,useState,useEffect } from "react";
 
+import axios from "axios";
+
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -14,15 +16,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor", current: false },
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/doctor/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -39,15 +41,27 @@ export default function PatientList() {
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
-      // Fetch or set your patient data here
-      const dummyData = [
-        { id: 1, name: 'John Doe', contact: '123-456-7890', age: 30, gender: 'Male', dateOfVisit: '2024-01-01' },
-        { id: 2, name: 'Jane Doe', contact: '987-654-3210', age: 25, gender: 'Female', dateOfVisit: '2024-02-01' },
-        // Add more patient data as needed
-      ];
+      // Define a function to fetch patient data
+      const fetchPatients = async () => {
+        try {
+
+          var doctor = localStorage.getItem("username");
+// Make a GET request to the API endpoint
+const response = await axios.get(`http://localhost:8080/patientList/${doctor}`);
+
+          
+          // Set the patient data in state
+          setPatients(response.data);
+        } catch (error) {
+          console.error("Error fetching patient data:", error);
+        }
+      };
   
-      setPatients(dummyData);
+      // Call the fetchPatients function
+      fetchPatients();
     }, []);
+
+
   
     const handleAccessPHR = (patientId) => {
       // Add logic to handle accessing PHR
@@ -235,7 +249,6 @@ export default function PatientList() {
               <thead>
                 <tr>
                   <th scope="col">Sr<span class="ps-1">No</span></th>
-                  <th scope="col">PID</th>
                   <th scope="col">Patient<span class="ps-1">Name</span></th>
                   <th scope="col">Contact<span class="ps-1">No.</span></th>
                   <th scope="col">Age</th>
@@ -249,9 +262,8 @@ export default function PatientList() {
          {patients.map((patient, index) => (
                   <tr key={patient.id}>
                     <td>{index + 1}</td>
-                    <td>{patient.id}</td>
-                    <td>{patient.name}</td>
-                    <td>{patient.contact}</td>
+                    <td>{patient.patientName}</td>
+                    <td>{patient.phoneNo}</td>
                     <td>{patient.age}</td>
                     <td>{patient.gender}</td>
                     <td>{patient.dateOfVisit}</td>

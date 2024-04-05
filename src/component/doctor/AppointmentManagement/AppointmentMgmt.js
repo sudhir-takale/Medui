@@ -1,4 +1,7 @@
-import { Fragment,useState } from "react";
+import { Fragment,useEffect,useState } from "react";
+
+import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 
@@ -14,15 +17,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor", current: false },
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/doctor/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -36,16 +39,84 @@ function classNames(...classes) {
 
 export default function AppointmentMgmt() {
 
-    const [appointments, setAppointments] = useState([
-        { id: 1, date: '2022-05-15', time: '10:00 AM', purpose: 'Blood test', patientName: 'John Doe' },
-        { id: 2, date: '2022-05-20', time: '02:30 PM',purpose: 'Medical Checkup', patientName: 'Jane Smith' },
-        // Add more appointments as needed
-      ]);
+  const [appointmentData, setAppointmentData] = useState([]);
+  const [noAppointment, setnoAppointment] = useState("");
+
+    const handleAcceptAppointment = (id) => {
+      try{
+        console.log(id);
+        var response = axios.put(`http://localhost:8080/updateAppointmentStatus/${id}?status=Approved`);
+        if(response)
+        {
+          console.log("Appointment accepted successfully!");
+          window.location.href = "/doctor/appointment-mgmt";
+        }
+        else
+        {
+          console.log("error updating appointment");
+        }
+          
+      }
+      catch
+      {
+        console.log("error updating appointment");        
+      }
+    };
+    
     const handleDeleteAppointment = (id) => {
-        // Implement logic to delete appointment by ID
-        const updatedAppointments = appointments.filter((appointment) => appointment.id !== id);
-        setAppointments(updatedAppointments);
-      };
+      try{
+        console.log(id);
+        var response = axios.put(`http://localhost:8080/updateAppointmentStatus/${id}?status=Rejected`);
+        if(response)
+        {
+          console.log("Appointment accepted successfully!");
+          window.location.href= "/doctor/appointment-mgmt";
+        }
+        else
+        {
+          console.log("error updating appointment");
+        }
+          
+      }
+      catch
+      {
+        console.log("error updating appointment");        
+      }
+    };
+    
+
+
+      useEffect(() => {
+        var username = localStorage.getItem("username");
+    
+        // Fetch data from the API endpoint when the component mounts
+        axios.get(`http://localhost:8080/getAllAppointments?doctorUsername=${username}&status=Pending`)
+          .then((response) => {
+            console.log(response.data);
+            if (response.status === 200) {
+              // If the response status is OK (200), check if appointments are available
+              if (response.data.length === 0) {
+                // If no appointments are available, set an empty array
+                setAppointmentData([]);
+              } else {
+                // If appointments are available, set the data
+                setAppointmentData(response.data);
+              }
+            } else if (response.status === 404) {
+              // Handle the case where no appointments are found
+              console.log("No appointments found");
+              // Set the state to an empty array to display the table structure
+              setAppointmentData([]);
+            } else {
+              // Handle other response statuses if needed
+              console.error("Error fetching appointments:", response.status);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching appointments:", error);
+          });
+      }, []);
+
   return (
     <>
       <div className="min-h-full">
@@ -231,23 +302,34 @@ export default function AppointmentMgmt() {
                   <th scope="col">Decline<span class="ps-1">Request</span></th>
                 </tr>
               </thead>
-         <tbody>
-           {appointments.map((appointment) => (
-            
-            <tr key={appointment.id}>
-              <td>{appointment.patientName}</td>
-              <td>{appointment.date}</td>
-              <td>{appointment.time}</td>
-              <td>{appointment.purpose}</td>
-              <td>
-                <button onClick={() => handleDeleteAppointment(appointment.id)} style={{ fontSize: '0.57rem',width: '125px', padding: '0.25rem 0.5rem' }}>Accept</button>
-              </td>
-              <td>
-                <button onClick={() => handleDeleteAppointment(appointment.id)} style={{ fontSize: '0.57rem',width: '125px', padding: '0.25rem 0.5rem' }}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        
+
+              <tbody>
+                {appointmentData.length === 0 ? (
+                  
+                  <tr>
+                    
+                    <td colSpan="6" style={{ textAlign: "center" }}>No appointments found</td>
+                  </tr>
+                  // <h1> $noAppointment</h1>
+                ) : (
+                  appointmentData.map((appointment) => (
+                    <tr key={appointment.appointmentId}>
+                      <td>{appointment.patientUsername}</td>
+                      <td>{appointment.date}</td>
+                      <td>{appointment.time}</td>
+                      <td>{appointment.reason}</td>
+                      <td>
+                        <button onClick={() => handleAcceptAppointment(appointment.appointmentId)} style={{ fontSize: '0.57rem', width: '125px', padding: '0.25rem 0.5rem' }}>Approve</button>
+                      </td>
+                      <td>
+                        <button onClick={() => handleDeleteAppointment(appointment.appointmentId)} style={{ fontSize: '0.57rem', width: '125px', padding: '0.25rem 0.5rem' }}>Decline</button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+
                     
                 </table>
             </div>

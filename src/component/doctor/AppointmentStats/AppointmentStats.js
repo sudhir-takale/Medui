@@ -1,4 +1,9 @@
-import { Fragment } from "react";
+import { Fragment,useEffect,useState } from "react";
+
+
+import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import "../dashboard/dashboard.css";
@@ -12,15 +17,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor", current: false },
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/doctor/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -31,6 +36,72 @@ function classNames(...classes) {
 }
 
 export default function AppointmentStats() {
+
+  const [appointmentRequests, setAppointmentRequests] = useState(0);
+  const [approvedAppointments, setApprovedAppointments] = useState(0);
+  
+  const [canceledAppointments, setCanceledAppointments] = useState(0);
+  const [completedAppointments, setCompletedAppointments] = useState(0);
+  
+  const [pendingAppointments, setPendingAppointments] = useState(0);
+
+  const [appointmentData, setAppointmentData] = useState([]);
+
+  useEffect(() => {
+    var username = localStorage.getItem("username");
+  
+    // Fetch data from the API endpoint when the component mounts
+    axios.get(`http://localhost:8080/getAllAppointments?doctorUsername=${username}`)
+      .then((response) => {
+        if (response.status === 200) {
+          // Set the appointment data
+          setAppointmentData(response.data);
+  
+          // Initialize counts for different appointment statuses
+          let pendingCount = 0;
+          let approvedCount = 0;
+          let canceledCount = 0;
+          let completedCount = 0;
+  
+          // Iterate over the appointment data and count occurrences of each status
+          response.data.forEach((appointment) => {
+            switch (appointment.status) {
+              case 'pending':
+                pendingCount++;
+                break;
+              case 'Approved':
+                approvedCount++;
+                break;
+              case 'Canceled':
+                canceledCount++;
+                break;
+              case 'Completed':
+                completedCount++;
+                break;
+              default:
+                break;
+            }
+          });
+  
+          // Set the counts for each specific state
+          setPendingAppointments(pendingCount);
+          setApprovedAppointments(approvedCount);
+          setCanceledAppointments(canceledCount);
+          setCompletedAppointments(completedCount);
+        } else if (response.status === 404) {
+          console.log("No appointments found");
+          setAppointmentData([]);
+        } else {
+          console.error("Error fetching appointments:", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching appointments:", error);
+      });
+  }, []);
+  
+
+
   return (
     <>
       <div className="min-h-full">
@@ -207,21 +278,21 @@ export default function AppointmentStats() {
                 <table class="table table-borderless">
                     <thead>
                         <tr>
-                            <th scope="col">Appointment<span class="ps-1">Requests</span></th>
+                            {/* <th scope="col">Appointment<span class="ps-1">Requests</span></th> */}
                             <th scope="col">Approved<span class="ps-1">Appointments</span></th>
                             <th scope="col">Canceled<span class="ps-1">Appointments</span></th>
-                            <th scope="col">Completed<span class="ps-1">Appointments</span></th>
+                            {/* <th scope="col">Completed<span class="ps-1">Appointments</span></th> */}
                             <th scope="col">Pending<span class="ps-1">Appointments</span></th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="bg-blight">2</span></td>
-                            <td><span class="bg-blight">10</span></td>
-                            <td><span class="bg-blight">5</span></td>
-                            <td><span class="bg-blight">5</span></td>
-                            <td><span class="bg-blight">1</span></td>
+                            {/* <td><span class="bg-blight">{appointmentRequests}</span></td> */}
+                            <td><span class="bg-blight">{approvedAppointments}</span></td>
+                            <td><span class="bg-blight">{canceledAppointments}</span></td>
+                            {/* <td><span class="bg-blight"></span></td> */}
+                            <td><span class="bg-blight">{pendingAppointments}</span></td>
                         </tr>
                     </tbody>
                 </table>
