@@ -10,6 +10,8 @@ import Registration from "./component/patient/Forms/PatientRegistration";
 import AdminRoutes from "./component/Admin/AdminRoutes";
 import Login from "./component/auth/Login";
 // import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
+
+
 import AppointmentStats from "./component/doctor/AppointmentStats/AppointmentStats";
 import AppointmentMgmt from "./component/doctor/AppointmentManagement/AppointmentMgmt";
 import PatientHistory from "./component/doctor/PatientHistory/PatientHistory";
@@ -19,6 +21,10 @@ import UpdatePHR from "./component/doctor/UpdatePHR/UpdatePHR";
 import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
 import ViewAllAppointment from "./component/patient/PatientAppointment/ViewAllAppointment";
 
+import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
+import Profile from "./component/doctor/Profile/Profile";
+import UpdateProfile from "./component/doctor/UpdateProfile/UpdateProfile";
+
 function App() {
   return (
     <div>
@@ -26,7 +32,9 @@ function App() {
         <Routes>
           <Route path="/admin" element={<AdminRoutes />} />
 
+    
           <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Doctor_Dashboard />} /> */}
           {/* Login and Registration */}
 
           <Route path="/patient-registration" element={<Registration />} />
@@ -64,16 +72,14 @@ function App() {
           <Route path="/patient/notification" element={<Appointment />} />
 
           {/* Doctor Routes  */}
-          {/* <Route path="/doctor/dashboard" element={<Doctor_Dashboard />} /> */}
+          <Route path="/doctor" element={<Doctor_Dashboard />} />
+
+          <Route path="/doctor/profile" element={<Profile />} />
+          <Route path="/doctor/update-profile" element={<UpdateProfile />} />
+
           <Route path="/doctor-registration" element={<DoctorRegistration />} />
-          <Route
-            path="/doctor/appointment-stats"
-            element={<AppointmentStats />}
-          />
-          <Route
-            path="/doctor/appointment-mgmt"
-            element={<AppointmentMgmt />}
-          />
+          <Route path="/doctor/appointment-stats" element={<AppointmentStats />} />
+          <Route path="/doctor/appointment-mgmt" element={<AppointmentMgmt />} />
           <Route path="/doctor/patient-history" element={<PatientHistory />} />
           <Route path="/doctor/patient-list" element={<PatientList />} />
           <Route path="/doctor/update-phr" element={<UpdatePHR />} />

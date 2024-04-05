@@ -1,0 +1,46 @@
+/* UpdateProfile Component CSS */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .profile-section {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 80px; /* Adjust this value as needed */
+  }
+  
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .grid-container div {
+    padding: 5px;
+  }
+  
+  .update-form {
+    margin-top: 20px; /* Adjust as needed */
+  }
+  
+  /* Button styles */
+  .btn-update-profile {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-update-profile:hover {
+    background-color: #45a049;
+  }
+  

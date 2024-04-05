@@ -2,6 +2,8 @@ import "./doctorregistration.css";
 
 import { useState } from "react";
 import { validateEmail } from "../../patient/Forms/utils";
+import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const PasswordErrorMessage = () => {
   return (
@@ -24,13 +26,13 @@ function DoctorRegistration() {
     isTouched: false,
   });
 
-  const [dob, setDob] = useState("");
+  const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [mobile, setMobileNumber] = useState("");
   const [role, setRole] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [address, setAddress] = useState("");
-  const [licensenumber, setLicenseNumber] = useState("");
+  const [licenseNumber, setLicenseNumber] = useState("");
 
   const getIsFormValid = () => {
     return (
@@ -40,10 +42,10 @@ function DoctorRegistration() {
       password.value.length >= 8 &&
       password.value === confirmPassword.value &&
       role !== "role" &&
-      dob !== "" &&
+      age !== "" &&
       gender !== "gender" &&
-      mobileNumber !== "" &&
-      licensenumber !== "" &&
+      mobile !== "" &&
+      licenseNumber !== "" &&
       specialization !== "" &&
       address !== ""
 
@@ -64,7 +66,7 @@ function DoctorRegistration() {
       isTouched: false,
     });
 
-    setDob("");
+    setAge("");
 
     setRole("role");
     setSpecialization("");
@@ -77,6 +79,32 @@ function DoctorRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const logged = () =>
+      toast.success("Doctor Registered Successfully !", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+
+      const warning = () =>
+      toast.warn("Username already taken !", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+
     // Prepare the data to send
     const formData = {
       firstName,
@@ -85,37 +113,37 @@ function DoctorRegistration() {
       username,
       password: password.value,
       confirmPassword: confirmPassword.value,
-      licensenumber,
+      licenseNumber,
       specialization,
-      dob,
+      age,
       gender,
-      mobileNumber,
+      mobile,
       role,
+      address,
     };
 
+
     try {
-      const response = await fetch("http://localhost:3000/processing-data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await axios.post(
+        "http://localhost:8080/doctor/doctorRegistration",
+        formData
+      );
 
-      if (!response.ok) {
-        throw new Error("Failed to submit form data.");
+      if (res.status === 200) {
+        logged();
+        window.location.href = "/login";
       }
-
-      alert("Account created!");
-      clearForm();
-
-      // Redirect to the home page
-      window.location.href = "/home";
     } catch (error) {
-      console.error("Error:", error.message);
-      alert("Failed to submit form data. Please try again later.");
+      if (error.response && error.response.status === 400) {
+        warning();
+      } else {
+        console.error("Error occurred while submitting the form:", error);
+      }
     }
+
   };
+
+  
   return (
     <div className="App1">
       <form onSubmit={handleSubmit}>
@@ -221,7 +249,7 @@ function DoctorRegistration() {
               </label>
               <input
                 type="tel"
-                value={mobileNumber}
+                value={mobile}
                 onChange={(e) => {
                   setMobileNumber(e.target.value);
                 }}
@@ -264,7 +292,7 @@ function DoctorRegistration() {
                 License Number <sup>*</sup>
               </label>
               <input
-                value={licensenumber}
+                value={licenseNumber}
                 onChange={(e) => {
                   setLicenseNumber(e.target.value);
                 }}
@@ -272,18 +300,18 @@ function DoctorRegistration() {
               />
             </div>
 
-          <div className="Field">
-            <label>
-              Date of Birth <sup>*</sup>
-            </label>
-            <input
-              type="date"
-              value={dob}
-              onChange={(e) => {
-                setDob(e.target.value);
-              }}
-            />
-          </div>
+            <div className="Field">
+              <label>
+                Age <sup>*</sup>
+              </label>
+              <input
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                }}
+                placeholder="Enter Your Age"
+              />
+            </div>
 
           <div className="Field">
             <label>
@@ -315,7 +343,7 @@ function DoctorRegistration() {
               />
             </div>
 
-          <button id="submit" type="submit" disabled={!getIsFormValid()}>
+          <button id="submit" type="submit" >
             Create account
           </button>
         </fieldset>

@@ -1,24 +1,43 @@
-import { Fragment,useState,useEffect } from "react";
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import "../dashboard/dashboard.css";
-import "./patienthistory.css";
+// import "./dashboard.css";
+import "./profile.css";
 import Footer from "../../patient/Home/Footer";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+const userData = {
+
+    
+    username: localStorage.getItem("username"),
+    firstName: localStorage.getItem("firstName"),
+    lastName: localStorage.getItem("lastName"),
+    email: localStorage.getItem("email"),
+    mobile: localStorage.getItem("mobile"),
+    role: localStorage.getItem("role"),
+    age: localStorage.getItem("age"),
+    gender: localStorage.getItem("gender"),
+    address: localStorage.getItem("address"),
+    specialization: localStorage.getItem("specialization"),
+    licenseNumber: localStorage.getItem("licenseNumber"),
+  };
+  console.log(localStorage.getItem("address"));
+
+
+  const user = {
+    name: "Tom Cook",
+    email: "tom@example.com",
+    imageUrl:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  };
+
 const navigation = [
   { name: "Doctor_Dashboard", href: "/doctor", current: false },
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
@@ -27,38 +46,25 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
+const ProfileSection = ({ user }) => {
+    return (
+      <div className="flex items-center">
+        <div className="flex-shrink-0">
+          <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+        </div>
+        <div className="ml-3">
+          <div className="text-base font-medium leading-none text-white">{user.name}</div>
+          <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+        </div>
+      </div>
+    );
+  };
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function PatientHistory() {
-
-    const [patientHistory, setPatientHistory] = useState([]);
-
-    useEffect(() => {
-        // Fetch or set your patient history data here
-        const dummyData = [
-          {
-            pid: 1,
-            patientName: 'John Doe',
-            gender: 'Male',
-            age: 30,
-            timeOfVisit: '2024-01-01T14:30:00',
-            medicinesGiven: ['Paracetamol', 'Antibiotic'],
-          },
-          {
-            pid: 2,
-            patientName: 'Jane Doe',
-            gender: 'Female',
-            age: 25,
-            timeOfVisit: '2024-02-01T10:45:00',
-            medicinesGiven: ['Aspirin', 'Cough Syrup'],
-          },
-          // Add more patient history data as needed
-        ];
-    
-        setPatientHistory(dummyData);
-      }, []);
+export default function Profile() {
   return (
     <>
       <div className="min-h-full">
@@ -225,44 +231,46 @@ export default function PatientHistory() {
             </>
           )}
         </Disclosure>
+        
+        <div class="profile-container">
+  <div class="profile-section">
+    <h2>Doctor Profile</h2>
+    <div class="grid-container">
+      <div><strong>Username:</strong></div>
+      <div>{userData.username}</div>
+      <div><strong>Name:</strong></div>
+      <div>{userData.firstName} {user.lastName}</div>
+      <div><strong>Email:</strong></div>
+      <div>{userData.email}</div>
+      <div><strong>Mobile:</strong></div>
+      <div>{userData.mobile}</div>
+      <div><strong>Role:</strong></div>
+      <div>{userData.role}</div>
+      <div><strong>Age:</strong></div>
+      <div>{userData.age}</div>
+      <div><strong>Gender:</strong></div>
+      <div>{userData.gender}</div>
+      <div><strong>Address:</strong></div>
+      <div>{userData.address || 'Not provided'}</div>
+      <div><strong>Specialization:</strong></div>
+      <div>{userData.specialization}</div>
+      <div><strong>License Number:</strong></div>
+      <div>{userData.licenseNumber}</div>
+    </div>
 
-        <div id="topnavbar">
-         <div style={{ textAlign: 'center', margin: '20px 0' }}>
-              <h3 style={{ fontSize: '1rem', color: '#333' }}>Patients History</h3>
-          </div>
-         
-         
-            <div class="table-responsive px-2">
-                <table class="table table-borderless">
-                <thead>
-          <tr>
-            <th>PID</th>
-            <th>Patient Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Time of Visit</th>
-            <th>Medicines Given</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patientHistory.map((entry, index) => (
-            <tr key={index}>
-              <td>{entry.pid}</td>
-              <td>{entry.patientName}</td>
-              <td>{entry.gender}</td>
-              <td>{entry.age}</td>
-              <td>{new Date(entry.timeOfVisit).toLocaleString()}</td>
-              <td>{entry.medicinesGiven.join(', ')}</td>
-            </tr>
-          ))}
-        </tbody>
-                </table>
-            </div>
-            
-        </div>
-        
-        
-        {/* <div
+    <div>
+    <Link to="/doctor/update-profile" className="btn-update-profile">
+              Update Profile
+            </Link>
+
+    </div>
+    
+    {/* <button onClick={updateProfile} className="btn-update-profile">Update Profile</button> */}
+  </div>
+</div>
+
+
+        <div
           className="bg-cover bg-center"
           style={{
             backgroundImage:
@@ -270,7 +278,8 @@ export default function PatientHistory() {
             height: "auto",
           }}
         >
-        </div> */}
+          {/* <Appointment /> */}
+        </div>
         
         <Footer />
       </div>

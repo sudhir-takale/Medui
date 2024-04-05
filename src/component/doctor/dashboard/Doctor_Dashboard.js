@@ -13,15 +13,15 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Doctor_Dashboard", href: "/doctor/dashboard", current: false },
+  { name: "Doctor_Dashboard", href: "/doctor", current: false },
   { name: "Manage Appointment", href: "/doctor/appointment-mgmt", current: false},
   { name: "Patient List", href: "/doctor/patient-list", current: false },
   { name: "Patient History", href: "/doctor/patient-history", current: false },
-  { name: "Update PHR", href: "/doctor/update-phr", current: false },
+  // { name: "Update PHR", href: "/doctor/update-phr", current: false },
   // { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/doctor/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -260,7 +260,7 @@ export default function Doctor_Dashboard() {
                   <SingleCard
                     image="https://i.ibb.co/r2zns1m/image-01.jpg"
                     // CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/AppointmentMgmt"
+                    titleHref="/doctor/appointment-mgmt"
                     // btnHref="/AppointmentMgmt"
                     Button="Manage Appointments"
                   />
@@ -269,17 +269,24 @@ export default function Doctor_Dashboard() {
                   <SingleCard
                     image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
                     // CardTitle="Creative Card Component designs graphic elements"
-                    titleHref="/PatientHistory"
+                    titleHref="/doctor/patient-list"
+                    // btnHref="/PatientHistory"
+                    Button="View Patient List"
+                  />
+                  <SingleCard
+                    image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
+                    // CardTitle="Creative Card Component designs graphic elements"
+                    titleHref="/doctor/patient-history"
                     // btnHref="/PatientHistory"
                     Button="View Patient History"
                   />
-                  <SingleCard
+                  {/* <SingleCard
                     image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
                     // CardTitle="The ultimate UX and UI guide to card design"
                     titleHref="/UpdatePHR"
                     btnHref="/patient/tele-health"
                     Button="Update PHR"
-                  />
+                  /> */}
                   
                 </div>
               </div>

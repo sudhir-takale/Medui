@@ -36,8 +36,9 @@ export default function Login() {
     try {
       console.log(username);
       console.log(password);
-      const response = await axios.post(
-        `http://localhost:8080/patient/login?username=${username}&password=${password}`,
+      const response = await axios.get(
+        // `http://localhost:8080/patient/login?username=${username}&password=${password}`,
+        `http://localhost:8080/login?username=${username}&password=${password}`,
         {},
         {
           withCredentials: true,
@@ -48,7 +49,32 @@ export default function Login() {
         console.log("Login successful");
         console.log(response.data);
         logged();
-        window.location.href = "/patient";
+
+        if(response.data.role == "Doctor" || response.data.role == "doctor" ){
+          localStorage.setItem('username', response.data.username);
+        localStorage.setItem('firstName', response.data.firstName);
+        localStorage.setItem('lastName', response.data.lastName);
+        localStorage.setItem('email', response.data.email);
+        localStorage.setItem('mobile', response.data.mobile);
+        localStorage.setItem('role', response.data.role);
+        localStorage.setItem('age', response.data.age);
+        localStorage.setItem('gender', response.data.gender);
+        localStorage.setItem('address', response.data.address);
+        localStorage.setItem('specialization', response.data.specialization);
+        localStorage.setItem('licenseNumber', response.data.licenseNumber);
+        
+
+        window.location.href = "/doctor";
+        }
+
+        else{
+
+          //set patient Data Here
+
+          window.location.href = "/patient";
+        }
+
+        
       } else {
         console.error("Login failed");
         notify();
