@@ -31,7 +31,7 @@ import Completed from "./component/patient/PatientAppointment/Completed";
 import PHRLayout from "./component/patient/HealthRecord/PHRLayout";
 import ShowRecord from "./component/patient/HealthRecord/ShowRecord";
 import AccessPhr from "./component/patient/HealthRecord/AccessPhr";
-import Doctor_Dashboard from "./component/doctor/dashboard/Doctor_Dashboard";
+import DoctorDashboard from "./component/doctor/dashboard/Doctor_Dashboard";
 
 import Profile from "./component/doctor/Profile/Profile";
 import UpdateProfile from "./component/doctor/UpdateProfile/UpdateProfile";
@@ -105,7 +105,7 @@ function App() {
           <Route path="/patient/notification" element={<Appointment />} />
 
           {/* Doctor Routes  */}
-          <Route path="/doctor" element={<Doctor_Dashboard />} />
+          <Route path="/doctor" element={<DoctorDashboard />} />
 
           <Route path="/doctor/profile" element={<Profile />} />
           <Route path="/doctor/update-profile" element={<UpdateProfile />} />
