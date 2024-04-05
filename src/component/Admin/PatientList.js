@@ -9,7 +9,7 @@ function PatientList() {
 
   const patientData = () => {
     toast.success("All patients has fetched!", {
-      autoClose: 6000,
+      autoClose: 2000,
     });
   };
   useEffect(() => {
@@ -26,17 +26,22 @@ function PatientList() {
   }, []);
 
   return (
-    <Table striped bordered hover responsive>
+    <Table striped hover responsive style={{ margin: "0", padding: "0" }}>
       <thead className="header">
         <tr className="header">
-          <th className="header">Index</th>
+          <th
+            className="header"
+            style={{ backgroundColor: "red", padding: "5px" }}
+          >
+            Index
+          </th>
           <th>Patient Name</th>
           <th>Address</th>
           <th>Phone No.</th>
           <th>Email id</th>
           <th>Age</th>
           <th>Gender</th>
-          <th>Blood Group</th>
+          <th>Blood G</th>
           <th>Joined On</th>
         </tr>
       </thead>

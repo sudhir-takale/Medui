@@ -77,7 +77,7 @@ function PendingRequest() {
 
   return (
     <div className="pending-request-container">
-      <h2 className="pending-request-header">Pending Requests</h2>
+      <h4 className="pending-request-header">Pending Requests</h4>
       <Table
         striped
         bordered
@@ -85,15 +85,15 @@ function PendingRequest() {
         responsive
         className="pending-request-table"
       >
-        <thead className="header">
+        <thead className="header1">
           <tr className="header">
-            <th className="header">Index</th>
+            <th>Index</th>
             <th>Name</th>
             <th>Address</th>
             <th>Phone No.</th>
             <th>Email id</th>
             <th>Gender</th>
-            <th>Blood Group</th>
+            <th>Blood G</th>
             <th>Action</th>
           </tr>
         </thead>

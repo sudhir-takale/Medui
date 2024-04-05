@@ -4,7 +4,11 @@
     font-weight: bold;
 }
 
-.header th {
+.header1 th {
     color: red;
-    background-color: #8e0d0d;
+
+}
+
+thead header {
+    background-color: red;
 }

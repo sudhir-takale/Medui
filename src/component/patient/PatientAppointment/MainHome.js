@@ -31,7 +31,7 @@ function MainHome() {
             </Button>
             <ListGroup>
               <Link
-                to="/patient/manage-appointment/appointments" // Updated route here
+                to="/patient/manage-appointment/appointments"
                 className="list-group-item"
               >
                 All Appointments
@@ -49,12 +49,18 @@ function MainHome() {
               >
                 Pending Appointments
               </Link>
+              <Link
+                to="/patient/manage-appointment/completed"
+                className="list-group-item"
+              >
+                Past Appointment
+              </Link>
 
               <Link
                 to="/patient/manage-appointment/cancelled"
                 className="list-group-item"
               >
-                Cancelled Appointments
+                Rejected Appointments
               </Link>
             </ListGroup>
           </Col>

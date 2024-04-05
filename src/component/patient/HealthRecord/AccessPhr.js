@@ -1,75 +1,68 @@
-import React, { useState } from "react";
-import "./AccessPhr.css"; 
+import React, { useState, useEffect } from "react";
+import "./AccessPhr.css";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-const doctorsList = [
-  {
-    id: 1,
-    name: "Dr. Smith",
-  },
-
-  {
-    id: 2,
-    name: "Dr. Johnson",
-  },
-];
-
-// AccessPhr component
 const AccessPhr = () => {
-  // State to manage the selected doctors
-  const [selectedDoctors, setSelectedDoctors] = useState([]);
+  const [doctors, setDoctors] = useState([]);
 
-  // Function to handle granting access to a doctor
-  const grantAccess = (doctorId) => {
-    // Check if the doctor is already selected
-    if (!selectedDoctors.includes(doctorId)) {
-      // If not selected, add the doctor to the list
-      setSelectedDoctors([...selectedDoctors, doctorId]);
-    } else {
-      // If already selected, remove the doctor from the list
-      const updatedDoctors = selectedDoctors.filter((id) => id !== doctorId);
-      setSelectedDoctors(updatedDoctors);
-    }
+  const revokeAccessed = () => toast.success("Access revoked successfully!");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/doctor/getDoctors")
+      .then((response) => {
+        setDoctors(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching patients:", error);
+      });
+  }, []);
+
+  const revokeAccess = (username) => {
+    axios
+      .delete(`http://localhost:8080/doctor/revokeAccess/${username}`)
+      .then((response) => {
+        console.log("Access revoked successfully");
+        revokeAccessed();
+      })
+      .catch((error) => {
+        console.error("Error revoking access:", error);
+      });
   };
 
   return (
     <div>
-      {" "}
-      <h1>PHR System</h1> <h2>List of Doctors</h2>{" "}
       <table className="doctor-table">
-        {" "}
         <thead>
-          {" "}
           <tr>
-            {" "}
-            <th>Sr No</th> <th>Doctor Name</th> <th>Action</th>{" "}
-          </tr>{" "}
-        </thead>{" "}
+            <th>Sr No</th>
+            <th>Doctor Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
         <tbody>
-          {" "}
-          {doctorsList.map((doctor, index) => (
+          {doctors.map((doctor, index) => (
             <tr key={doctor.id}>
-              {" "}
-              <td> {index + 1}</td> <td> {doctor.name}</td>{" "}
+              <td>{index + 1}</td>
               <td>
-                {" "}
+                {doctor.firstName}
+                {doctor.lastName}
+              </td>
+              <td>
                 <button
-                  onClick={() => grantAccess(doctor.id)}
-                  className={
-                    selectedDoctors.includes(doctor.id)
-                      ? "revoke-button"
-                      : "grant-button"
-                  }
+                  className="grant-button"
+                  onClick={() => revokeAccess(doctor.username)}
                 >
-                  {" "}
-                  {selectedDoctors.includes(doctor.id)
-                    ? "Revoke Access"
-                    : "Grant Access"}
-                </button>{" "}
-              </td>{" "}
+                  Revoke Access
+                </button>
+              </td>
             </tr>
           ))}
-        </tbody>{" "}
-      </table>{" "}
+        </tbody>
+      </table>
+      <ToastContainer />
     </div>
   );
 };

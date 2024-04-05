@@ -1,7 +1,7 @@
 import React from "react";
 import "./appointmentlay.css";
 import MainHome from "./MainHome";
-import ViewAllAppointment from "./AppointmentHeader";
+// import ViewAllAppointment from "./AppointmentHeader";
 import { Outlet } from "react-router-dom";
 
 function AppointmentLayout() {
@@ -12,7 +12,7 @@ function AppointmentLayout() {
           <MainHome />
         </div>
         <div className="secondbox">
-          <ViewAllAppointment />
+          {/* <ViewAllAppointment /> */}
           <Outlet />
         </div>
       </div>

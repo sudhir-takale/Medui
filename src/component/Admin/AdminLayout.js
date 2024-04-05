@@ -1,11 +1,12 @@
 import React from "react";
-import "./admin.css"
+import "./admin.css";
 import MainHome from "./Data";
 import { Outlet } from "react-router-dom";
 
 function AdminLayout() {
   return (
-    <>
+    <div className="containes">
+      <h1 className="heading" >WelCome to The Admin Dashboard</h1>
       <div className="appointment">
         <div className="firstbox">
           <MainHome />
@@ -14,7 +15,7 @@ function AdminLayout() {
           <Outlet />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

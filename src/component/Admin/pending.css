@@ -1,5 +1,6 @@
 .pending-request-container {
-    margin: 6px;
+    margin: -10px;
+
 }
 
 .pending-request-header {
@@ -18,10 +19,23 @@
 }
 
 .pending-request-table th.header {
-    background-color: #007bff;
     color: #fff;
+    padding: 4px;
+}
+
+.header {
+    padding: 5px;
 }
 
 .pending-request-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.pending-request-header {
+    color: rgb(220, 16, 176);
+    font-weight: bold;
+    text-shadow: 3px slateblue;
+    text-shadow: black;
+    display: inline;
+    padding: 5px;
 }

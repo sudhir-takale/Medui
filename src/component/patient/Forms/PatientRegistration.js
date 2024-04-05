@@ -67,7 +67,7 @@ function PatientRegistration() {
 
       if (res.status === 200) {
         logged();
-        // window.location.href = "/patient";
+        window.location.href = "/patient";
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {

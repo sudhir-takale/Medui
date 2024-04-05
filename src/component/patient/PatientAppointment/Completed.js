@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Confirmed() {
+function Completed() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/manage-appointment/{confirm}")
+      .get("http://localhost:3000/manage-appointment/{Completed}")
       .then((response) => {
         setAppointments(response.data);
         console.log(response.data);
@@ -18,7 +18,7 @@ function Confirmed() {
 
   return (
     <div>
-      <h1>Confirmed Appointments</h1>
+      <h1>Completed Appointments</h1>
       <table className="appointment-table">
         <thead>
           <tr>
@@ -49,4 +49,4 @@ function Confirmed() {
   );
 }
 
-export default Confirmed;
+export default Completed;
