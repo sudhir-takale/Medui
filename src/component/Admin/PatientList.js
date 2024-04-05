@@ -2,16 +2,23 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./list.css";
 import Table from "react-bootstrap/Table";
+import { ToastContainer, toast } from "react-toastify";
 
 function PatientList() {
   const [patients, setPatients] = useState([]);
 
+  const patientData = () => {
+    toast.success("All patients has fetched!", {
+      autoClose: 6000,
+    });
+  };
   useEffect(() => {
     axios
       .get("http://localhost:8080/patient/getPatients")
       .then((response) => {
         setPatients(response.data);
         console.log(response.data);
+        patientData();
       })
       .catch((error) => {
         console.error("Error fetching patients:", error);
@@ -48,6 +55,7 @@ function PatientList() {
           </tr>
         ))}
       </tbody>
+      <ToastContainer />
     </Table>
   );
 }

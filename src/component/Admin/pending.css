@@ -1,0 +1,27 @@
+.pending-request-container {
+    margin: 6px;
+}
+
+.pending-request-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.pending-request-table {
+    width: 100%;
+}
+
+.pending-request-table th,
+.pending-request-table td {
+    text-align: center;
+}
+
+.pending-request-table th.header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pending-request-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
