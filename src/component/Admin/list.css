@@ -1,0 +1,10 @@
+.header {
+    background-color: #8e0d0d;
+    color: #333;
+    font-weight: bold;
+}
+
+.header th {
+    color: red;
+    background-color: #8e0d0d;
+}
