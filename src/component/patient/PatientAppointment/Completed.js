@@ -38,7 +38,7 @@ function Completed() {
           {appointments.map((appointment, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{appointment.doctorName}</td>
+              <td>{appointment.doctorUsername}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
               <td>{appointment.status}</td>

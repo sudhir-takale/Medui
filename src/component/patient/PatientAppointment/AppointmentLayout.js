@@ -12,7 +12,6 @@ function AppointmentLayout() {
           <MainHome />
         </div>
         <div className="secondbox">
-          {/* <ViewAllAppointment /> */}
           <Outlet />
         </div>
       </div>

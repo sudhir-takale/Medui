@@ -14,3 +14,9 @@
 #services {
     margin-top: -6px;
 }
+
+/* customToastify.css */
+.Toastify__toast-body {
+    word-break: unset;
+    word-break: initial;
+}

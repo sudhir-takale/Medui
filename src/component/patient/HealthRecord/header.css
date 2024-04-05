@@ -1,12 +1,12 @@
 .share-access-form {
-    width: 23%;
+    width: 28%;
     z-index: 1000;
-    margin-left: 34%;
+    margin-left: 38%;
     border: 2px solid rgb(54, 163, 202);
     background-color: rgb(237, 225, 240);
     padding: 4px;
     border-radius: 14px;
-    margin-top: 3%;
+    margin-top: 2%;
     position: absolute;
     color: rgb(36, 3, 31);
 
@@ -14,6 +14,13 @@
 }
 
 
+form {
+    width: 418px;
+    /* padding: 20px; */
+    border-radius: 8px;
+    /* background-color: #f5f5f5; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 .buttons {
     display: flex;

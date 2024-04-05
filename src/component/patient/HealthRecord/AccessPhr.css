@@ -34,26 +34,17 @@ h2 {
     color: white;
 }
 
-.grant-button,
-.revoke-button {
+.grant-button {
     background-color: #a51616;
     color: #fff;
     border: none;
     padding: 8px 16px;
+    width: 156px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-.grant-button:hover,
-.revoke-button:hover {
+.grant-button:hover {
     background-color: #0056b3;
-}
-
-.revoke-button {
-    background-color: #dc3545;
-}
-
-.revoke-button:hover {
-    background-color: #ba2733;
 }

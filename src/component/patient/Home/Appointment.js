@@ -67,30 +67,24 @@ function Appointment() {
       transition: Bounce,
     });
 
-
-const checkError = () =>
-  toast.error("Invalid Field Data !", {
-    position: "top-right",
-    autoClose: 7000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-  });
-
-
-
-
-
+  const checkError = () =>
+    toast.error("Invalid Field Data !", {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const loggedInUser = "sudhir";
+      const loggedInUser = localStorage.getItem("username");
       const selectedDoctorUsername = formData.doctor;
       const time = formData.time;
       const reason = formData.reason;
@@ -122,7 +116,7 @@ const checkError = () =>
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
-       checkError();
+        checkError();
       }
       console.error("Error:", error);
     }
