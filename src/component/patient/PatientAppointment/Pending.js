@@ -5,8 +5,12 @@ function Pending() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
+        var username = localStorage.getItem("username");
+
     axios
-      .get("http://localhost:3000/manage-appointment/{pending}")
+      .get(
+        `http://localhost:8080/getAllAppointments?patientUsername=${username}&status=Pending`
+      )
       .then((response) => {
         setAppointments(response.data);
         console.log(response.data);

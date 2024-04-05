@@ -5,8 +5,11 @@ function Rejected() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
+        var username = localStorage.getItem("username");
     axios
-      .get("http://localhost:3000/manage-appointment/{rejected}")
+      .get(
+        `http://localhost:8080/getAllAppointments?patientUsername=${username}&status=Rejected`
+      )
       .then((response) => {
         setAppointments(response.data);
         console.log(response.data);

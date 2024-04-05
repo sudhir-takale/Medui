@@ -5,8 +5,12 @@ function Confirmed() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
+    var username = localStorage.getItem("username");
+
     axios
-      .get("http://localhost:3000/manage-appointment/{confirm}")
+      .get(
+        `http://localhost:8080/getAllAppointments?patientUsername=${username}&status=Confirmed`
+      )
       .then((response) => {
         setAppointments(response.data);
         console.log(response.data);

@@ -50,31 +50,43 @@ export default function Login() {
         console.log(response.data);
         logged();
 
-        if(response.data.role == "Doctor" || response.data.role == "doctor" ){
-          localStorage.setItem('username', response.data.username);
-        localStorage.setItem('firstName', response.data.firstName);
-        localStorage.setItem('lastName', response.data.lastName);
-        localStorage.setItem('email', response.data.email);
-        localStorage.setItem('mobile', response.data.mobile);
-        localStorage.setItem('role', response.data.role);
-        localStorage.setItem('age', response.data.age);
-        localStorage.setItem('gender', response.data.gender);
-        localStorage.setItem('address', response.data.address);
-        localStorage.setItem('specialization', response.data.specialization);
-        localStorage.setItem('licenseNumber', response.data.licenseNumber);
-        
-
-        window.location.href = "/doctor";
-        }
-
-        else{
-
-          //set patient Data Here
-
+        if (
+          response.data.role === "Doctor" ||
+          response.data.role === "doctor"
+        ) {
+          localStorage.setItem("username", response.data.username);
+          localStorage.setItem("firstName", response.data.firstName);
+          localStorage.setItem("lastName", response.data.lastName);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("mobile", response.data.mobile);
+          localStorage.setItem("role", response.data.role);
+          localStorage.setItem("age", response.data.age);
+          localStorage.setItem("gender", response.data.gender);
+          localStorage.setItem("address", response.data.address);
+          localStorage.setItem("specialization", response.data.specialization);
+          localStorage.setItem("licenseNumber", response.data.licenseNumber);
+          localStorage.setItem("isLoggedIn", "true");
+          window.location.href = "/doctor";
+        } else if (
+          response.data.role === "admin" ||
+          response.data.role === "Admin"
+        ) {
+          localStorage.setItem("username", response.data.username);
+          localStorage.setItem("role", response.data.role);
+          localStorage.setItem("isLoggedIn", "true");
+          window.location.href = "/admin";
+        } else {
+          localStorage.setItem("username", response.data.username);
+          localStorage.setItem("patientName", response.data.patientName);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("mobile", response.data.mobileNo);
+          localStorage.setItem("role", response.data.role);
+          localStorage.setItem("age", response.data.age);
+          localStorage.setItem("gender", response.data.gender);
+          localStorage.setItem("address", response.data.address);
+          localStorage.setItem("isLoggedIn", "true");
           window.location.href = "/patient";
         }
-
-        
       } else {
         console.error("Login failed");
         notify();
