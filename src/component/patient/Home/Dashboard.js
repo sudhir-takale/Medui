@@ -13,13 +13,17 @@ const user = {
 };
 const navigation = [
   { name: "Dashboard", href: "patient/dashboard", current: false },
-  { name: "Manage Appointment", href: "/patient/manage-appointment", current: false },
+  {
+    name: "Manage Appointment",
+    href: "/patient/manage-appointment",
+    current: false,
+  },
   { name: "View History", href: "/patient/view-history", current: false },
   { name: "Tele Health", href: "/patient/tele-health", current: false },
   { name: "Reports", href: "/patient/health-record", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Your Profile", href: "/profile" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -38,7 +42,7 @@ export default function dashboard() {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="hidden md:block" >
+                    <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4 ">
                         {navigation.map((item) => (
                           <a
@@ -289,7 +293,7 @@ export default function dashboard() {
         >
           <Appointment />
         </div>
-        
+
         <Footer />
       </div>
     </>

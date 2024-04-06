@@ -79,74 +79,80 @@ function PatientRegistration() {
   };
 
   return (
-    <div className="App1">
+    <div className="registration-form-container">
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <fieldset>
           <h2 id="sign-up">Sign Up</h2>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               First name <sup>*</sup>
             </label>
             <input
               value={patientName}
               name="patientName"
               onChange={(e) => setFirstName(e.target.value)}
+              className="form-input"
               placeholder="Enter First name"
             />
           </div>
-          <div className="Field">
-            <label>Address</label>
+          <div className="form-field-group">
+            <label className="form-label">Address</label>
             <input
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              className="form-input"
               placeholder="Enter Address"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Email address <sup>*</sup>
             </label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="form-input"
               placeholder="Enter Email address"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Username <sup>*</sup>
             </label>
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className="form-input"
               placeholder="Enter Username"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Password <sup>*</sup>
             </label>
             <input
               value={password}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              className="form-input"
               placeholder="Enter Password"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Confirm Password <sup>*</sup>
             </label>
             <input
               value={confirmPassword}
               type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
+              className="form-input"
               placeholder="Confirm Password"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Mobile Number <sup>*</sup>
             </label>
             <input
@@ -154,48 +160,56 @@ function PatientRegistration() {
               value={phoneNo}
               name="phoneNo"
               onChange={(e) => setMobileNumber(e.target.value)}
+              className="form-input"
               placeholder="Enter Mobile Number"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Date of Birth <sup>*</sup>
             </label>
             <input
               type="date"
               value={dob}
               onChange={(e) => setDob(e.target.value)}
+              className="form-input"
             />
           </div>
-          <div className="Field">
-            <label>
+          <div className="form-field-group">
+            <label className="form-label">
               Gender <sup>*</sup>
             </label>
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="form-input"
+            >
               <option value="gender">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
           </div>
-          <div className="Field">
-            <label>Blood Group</label>
+          <div className="form-field-group">
+            <label className="form-label">Blood Group</label>
             <input
               value={bloodGroup}
               onChange={(e) => setBloodGroup(e.target.value)}
+              className="form-input"
               placeholder="Enter Blood Group"
             />
           </div>
-          <div className="Field">
-            <label>Age</label>
+          <div className="form-field-group">
+            <label className="form-label">Age</label>
             <input
               type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
+              className="form-input"
               placeholder="Enter Age"
             />
           </div>
-          <button id="submit" type="submit">
+          <button className="submit-button" type="submit">
             Create account
           </button>
         </fieldset>

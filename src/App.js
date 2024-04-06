@@ -14,7 +14,6 @@ import PatientHistory from "./component/doctor/PatientHistory/PatientHistory";
 import PatientList1 from "./component/Admin/PatientList";
 import PatientList from "./component/doctor/PatientList/PatientList";
 
-
 import DoctorRegistration from "./component/doctor/Registration/DoctorRegistration";
 import UpdatePHR from "./component/doctor/UpdatePHR/UpdatePHR";
 import AppointmentLayout from "./component/patient/PatientAppointment/AppointmentLayout";
@@ -35,6 +34,7 @@ import DoctorDashboard from "./component/doctor/dashboard/Doctor_Dashboard";
 
 import Profile from "./component/doctor/Profile/Profile";
 import UpdateProfile from "./component/doctor/UpdateProfile/UpdateProfile";
+import UpdatePatient from "./component/patient/Forms/UpdateProfile";
 
 function App() {
   return (
@@ -100,7 +100,7 @@ function App() {
           {/* ------------------------------------------------------------------- */}
           <Route path="/patient/telehealth" element={<Appointment />} />
           <Route path="/patient/view-history" element={<Appointment />} />
-          <Route path="/patient/profile" element={<Appointment />} />
+          <Route path="/patient/profile" element={<UpdatePatient />} />
           <Route path="/patient/setting" element={<Appointment />} />
           <Route path="/patient/notification" element={<Appointment />} />
 
@@ -111,8 +111,14 @@ function App() {
           <Route path="/doctor/update-profile" element={<UpdateProfile />} />
 
           <Route path="/doctor-registration" element={<DoctorRegistration />} />
-          <Route path="/doctor/appointment-stats" element={<AppointmentStats />} />
-          <Route path="/doctor/appointment-mgmt" element={<AppointmentMgmt />} />
+          <Route
+            path="/doctor/appointment-stats"
+            element={<AppointmentStats />}
+          />
+          <Route
+            path="/doctor/appointment-mgmt"
+            element={<AppointmentMgmt />}
+          />
           <Route path="/doctor/patient-history" element={<PatientHistory />} />
           <Route path="/doctor/patient-list" element={<PatientList />} />
           <Route path="/doctor/update-phr" element={<UpdatePHR />} />

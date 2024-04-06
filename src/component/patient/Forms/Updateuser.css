@@ -1,0 +1,25 @@
+.formContainer {
+    margin-left: 30%;
+    margin-top: 7%;
+    
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.input-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.input-row label {
+    margin-right: 20px;
+}
+
+.input-row input {
+    margin-right: 10px;
+}
